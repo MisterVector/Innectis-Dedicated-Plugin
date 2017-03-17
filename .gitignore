@@ -1,0 +1,18 @@
+# Git stuff
+.gitk
+*.orig
+
+# Innectis stuff
+extra/
+documentation/
+src/plugin.yml
+
+# Netbeans stuff
+build/
+dist/
+localonly/
+nbproject/private
+
+# Netbeans stuff
+manifest.mf
+build.xml

@@ -1,0 +1,28 @@
+
+# Plugins that are supported by the IDP
+#
+# These values come from the plugin.yml file within the libraries.
+# If a version number is given it will be checked and only print an Error message if they dont match.
+# When skipwrongversion is set to true, it will not load the library in the IDP.
+
+worldedit: 
+  name: WorldEdit
+  version: 5.5.7
+  skipwrongversion: false
+  
+votifier:
+  name: Votifier
+  
+nocheat:
+  name: NoCheatPlus
+  version: 3.9.4-DEV-b554
+  skipwrongversion: false
+
+disguisecraft: 
+  name: DisguiseCraft
+  
+protocollib: 
+  name: ProtocolLib 
+  
+dynmap:
+  name: dynmap

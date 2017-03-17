@@ -1,0 +1,88 @@
+INSERT INTO `version` (`name`,`version`) VALUES ('database', 25) ON DUPLICATE KEY UPDATE `version`=25;
+
+
+ALTER TABLE `bankaccounts` ENGINE=MyISAM, COMMENT='';
+
+
+ALTER TABLE `banktransferlogs` ENGINE=MyISAM, COMMENT='';
+
+
+ALTER TABLE `blacklist_events` ENGINE=MyISAM, COMMENT='';
+
+
+ALTER TABLE `block_breaks` ENGINE=MyISAM, COMMENT='';
+
+
+ALTER TABLE `block_locks` ENGINE=MyISAM, COMMENT='';
+
+
+ALTER TABLE `block_quota` ENGINE=MyISAM, COMMENT='';
+
+
+ALTER TABLE `block_quota_log` ENGINE=MyISAM, COMMENT='';
+
+
+ALTER TABLE `blocklog` ENGINE=MyISAM, COMMENT='';
+
+
+ALTER TABLE `chatlog` ENGINE=MyISAM, COMMENT='';
+
+
+ALTER TABLE `chestlog` ENGINE=MyISAM, COMMENT='';
+
+
+ALTER TABLE `chests` ENGINE=MyISAM, COMMENT='';
+
+
+ALTER TABLE `chests_members` ENGINE=MyISAM, COMMENT='';
+
+
+ALTER TABLE `deaths` ENGINE=MyISAM, COMMENT='';
+
+
+ALTER TABLE `doors` ENGINE=MyISAM, COMMENT='';
+
+
+ALTER TABLE `doors_members` ENGINE=MyISAM, COMMENT='';
+
+
+ALTER TABLE `homes` ENGINE=MyISAM, COMMENT='';
+
+
+ALTER TABLE `kickedplayers` ENGINE=MyISAM, COMMENT='';
+
+
+ALTER TABLE `log` ENGINE=MyISAM, COMMENT='';
+
+
+ALTER TABLE `lot_banned` ENGINE=MyISAM, COMMENT='';
+
+
+ALTER TABLE `lot_members` ENGINE=MyISAM, COMMENT='';
+
+
+ALTER TABLE `lots` ENGINE=MyISAM, COMMENT='';
+
+
+ALTER TABLE `players` ENGINE=MyISAM, COMMENT='';
+
+
+ALTER TABLE `pvp_kills` ENGINE=MyISAM, COMMENT='';
+
+
+ALTER TABLE `pvp_opt` ENGINE=MyISAM, COMMENT='';
+
+
+ALTER TABLE `pvp_points` ENGINE=MyISAM, COMMENT='';
+
+
+ALTER TABLE `sales` ENGINE=MyISAM, COMMENT='';
+
+
+ALTER TABLE `version` ENGINE=MyISAM, COMMENT='';
+
+
+ALTER TABLE `warps` ENGINE=MyISAM, COMMENT='';
+
+
+ALTER TABLE `waypoints` ENGINE=MyISAM, COMMENT='';
