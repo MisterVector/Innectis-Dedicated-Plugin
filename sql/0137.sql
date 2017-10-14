@@ -1,3 +1,0 @@
-ALTER TABLE `game_profiles` ADD COLUMN `deathmatch_wins` INT(11) NULL  AFTER `flags` , ADD COLUMN `paintball_wins` INT(11) NULL  AFTER `deathmatch_wins` , ADD COLUMN `tag_wins` INT(11) NULL  AFTER `paintball_wins` , ADD COLUMN `paintball_shots` INT(11) NULL  AFTER `tag_wins` , ADD COLUMN `paintball_kills` INT(11) NULL  AFTER `paintball_shots` , ADD COLUMN `mobarena_kills` INT(11) NULL  AFTER `paintball_kills` , ADD COLUMN `mobarena_rounds` INT(11) NULL  AFTER `mobarena_kills` , ADD COLUMN `tag_tags` INT(11) NULL  AFTER `mobarena_rounds` ;
-
-INSERT INTO version (name,version) VALUES ('database', 137) ON DUPLICATE KEY UPDATE version = 137;

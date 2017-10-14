@@ -1,6 +1,6 @@
 /*
 SQLyog Ultimate - MySQL GUI v8.2 
-MySQL - 5.5.25a : Database - innectis_db
+MySQL - 5.5.45 : Database - innectis_db
 *********************************************************************
 */
 
@@ -12,25 +12,13 @@ MySQL - 5.5.25a : Database - innectis_db
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
-/*Table structure for table `auto_responses` */
-
-DROP TABLE IF EXISTS `auto_responses`;
-
-CREATE TABLE `auto_responses` (
-  `ID` int(11) NOT NULL AUTO_INCREMENT,
-  `owner` varchar(64) NOT NULL,
-  `order` int(11) NOT NULL,
-  `response` text NOT NULL,
-  PRIMARY KEY (`ID`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
 /*Table structure for table `ban_whitelist` */
 
 DROP TABLE IF EXISTS `ban_whitelist`;
 
 CREATE TABLE `ban_whitelist` (
-  `name` varchar(45) NOT NULL,
-  PRIMARY KEY (`name`)
+  `player_id` varchar(45) NOT NULL,
+  PRIMARY KEY (`player_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 /*Table structure for table `banned_ip_players` */
@@ -40,13 +28,14 @@ DROP TABLE IF EXISTS `banned_ip_players`;
 CREATE TABLE `banned_ip_players` (
   `ID` int(11) NOT NULL AUTO_INCREMENT,
   `iplist` text,
-  `userlist` text,
-  `banned_by` varchar(15) DEFAULT NULL,
+  `player_id_list` text,
+  `banned_by_player_id` varchar(45) DEFAULT NULL,
   `banned_time` timestamp NULL DEFAULT NULL,
   `duration_ticks` bigint(20) DEFAULT NULL,
   `joinban` tinyint(1) DEFAULT NULL,
+  `expired` bigint(20) NOT NULL DEFAULT '0',
   PRIMARY KEY (`ID`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 /*Table structure for table `banned_players` */
 
@@ -54,13 +43,14 @@ DROP TABLE IF EXISTS `banned_players`;
 
 CREATE TABLE `banned_players` (
   `ID` int(11) NOT NULL AUTO_INCREMENT,
-  `username` varchar(45) NOT NULL,
-  `banned_by` varchar(45) NOT NULL,
+  `player_id` varchar(45) NOT NULL,
+  `banned_by_player_id` varchar(45) NOT NULL,
   `banned_time` timestamp NULL DEFAULT NULL,
   `duration_ticks` bigint(20) NOT NULL DEFAULT '0',
   `joinban` tinyint(1) DEFAULT '0',
+  `expired` bigint(20) NOT NULL DEFAULT '0',
   UNIQUE KEY `ID` (`ID`)
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 
 /*Table structure for table `block_breaks` */
 
@@ -68,7 +58,7 @@ DROP TABLE IF EXISTS `block_breaks`;
 
 CREATE TABLE `block_breaks` (
   `time` datetime NOT NULL,
-  `username` varchar(60) NOT NULL,
+  `player_id` varchar(60) NOT NULL,
   `blockid` int(11) NOT NULL,
   `world` varchar(60) NOT NULL,
   `x` int(11) NOT NULL,
@@ -76,23 +66,7 @@ CREATE TABLE `block_breaks` (
   `z` int(11) NOT NULL,
   UNIQUE KEY `coords` (`world`,`x`,`y`,`z`),
   KEY `time` (`time`),
-  KEY `username` (`username`),
   KEY `blockid` (`blockid`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
-/*Table structure for table `block_locks` */
-
-DROP TABLE IF EXISTS `block_locks`;
-
-CREATE TABLE `block_locks` (
-  `lockid` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `username` varchar(60) NOT NULL,
-  `world` varchar(60) NOT NULL,
-  `locx` int(11) NOT NULL,
-  `locy` int(11) NOT NULL,
-  `locz` int(11) NOT NULL,
-  PRIMARY KEY (`lockid`),
-  UNIQUE KEY `coords` (`world`,`locx`,`locy`,`locz`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 /*Table structure for table `block_log` */
@@ -101,7 +75,7 @@ DROP TABLE IF EXISTS `block_log`;
 
 CREATE TABLE `block_log` (
   `logid` bigint(20) NOT NULL AUTO_INCREMENT,
-  `name` varchar(45) NOT NULL,
+  `player_id` varchar(45) NOT NULL,
   `locx` int(11) NOT NULL,
   `locy` int(11) NOT NULL,
   `locz` int(11) NOT NULL,
@@ -111,20 +85,18 @@ CREATE TABLE `block_log` (
   `DateTime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `ActionType` int(11) NOT NULL,
   PRIMARY KEY (`logid`),
-  KEY `INX_Username` (`name`),
   KEY `INX_Location` (`locx`,`locz`,`locy`,`world`)
-) ENGINE=MyISAM AUTO_INCREMENT=23525 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=641507 DEFAULT CHARSET=utf8;
 
 /*Table structure for table `block_quota` */
 
 DROP TABLE IF EXISTS `block_quota`;
 
 CREATE TABLE `block_quota` (
-  `username` varchar(60) NOT NULL,
+  `player_id` varchar(60) NOT NULL,
   `blockid` int(11) NOT NULL,
   `maxblocks` int(11) NOT NULL,
-  `timespan` int(11) NOT NULL,
-  PRIMARY KEY (`username`,`blockid`)
+  `timespan` int(11) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 /*Table structure for table `block_quota_log` */
@@ -133,9 +105,9 @@ DROP TABLE IF EXISTS `block_quota_log`;
 
 CREATE TABLE `block_quota_log` (
   `time` datetime NOT NULL,
-  `username` varchar(60) NOT NULL,
+  `player_id` varchar(60) NOT NULL,
   `blockid` int(11) NOT NULL,
-  KEY `idx` (`time`,`username`,`blockid`)
+  KEY `idx` (`time`,`blockid`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 /*Table structure for table `bookcase` */
@@ -146,7 +118,7 @@ CREATE TABLE `bookcase` (
   `bookcaseid` bigint(20) NOT NULL AUTO_INCREMENT,
   `bagid` bigint(20) NOT NULL DEFAULT '0',
   `casetitle` varchar(35) NOT NULL DEFAULT 'Bookcase',
-  `owner` varchar(60) NOT NULL,
+  `owner_id` varchar(60) NOT NULL,
   `world` varchar(60) NOT NULL,
   `locx` int(11) NOT NULL,
   `locy` int(11) NOT NULL,
@@ -154,9 +126,8 @@ CREATE TABLE `bookcase` (
   `flags` bigint(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`bookcaseid`),
   UNIQUE KEY `UNQ` (`world`,`locx`,`locy`,`locz`),
-  KEY `INX_LOC` (`world`,`locx`,`locy`,`locz`),
-  KEY `INX_OWNER` (`owner`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+  KEY `INX_LOC` (`world`,`locx`,`locy`,`locz`)
+) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 
 /*Table structure for table `bookcase_members` */
 
@@ -164,9 +135,54 @@ DROP TABLE IF EXISTS `bookcase_members`;
 
 CREATE TABLE `bookcase_members` (
   `bookcaseid` bigint(20) NOT NULL,
-  `username` varchar(60) NOT NULL,
+  `player_id` varchar(60) NOT NULL,
+  `isop` tinyint(1) NOT NULL DEFAULT '0',
   KEY `bookcaseid` (`bookcaseid`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+/*Table structure for table `channel_bans` */
+
+DROP TABLE IF EXISTS `channel_bans`;
+
+CREATE TABLE `channel_bans` (
+  `channelid` int(11) NOT NULL,
+  `player_id` varchar(45) DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+/*Table structure for table `channel_information` */
+
+DROP TABLE IF EXISTS `channel_information`;
+
+CREATE TABLE `channel_information` (
+  `channelid` int(11) NOT NULL AUTO_INCREMENT,
+  `channelname` varchar(45) DEFAULT NULL,
+  `settings` bigint(20) NOT NULL,
+  `password` varchar(45) DEFAULT NULL,
+  `lastactivity` bigint(20) NOT NULL,
+  PRIMARY KEY (`channelid`)
+) ENGINE=MyISAM AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
+
+/*Table structure for table `channel_members` */
+
+DROP TABLE IF EXISTS `channel_members`;
+
+CREATE TABLE `channel_members` (
+  `channelid` int(11) NOT NULL,
+  `player_id` varchar(45) DEFAULT NULL,
+  `personalnum` int(11) NOT NULL,
+  `membergroup` int(11) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+/*Table structure for table `chest_shop_list` */
+
+DROP TABLE IF EXISTS `chest_shop_list`;
+
+CREATE TABLE `chest_shop_list` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `lotid` int(11) NOT NULL,
+  `name` varchar(100) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 /*Table structure for table `chestlog` */
 
@@ -175,12 +191,11 @@ DROP TABLE IF EXISTS `chestlog`;
 CREATE TABLE `chestlog` (
   `logid` int(11) NOT NULL AUTO_INCREMENT,
   `chestid` int(11) NOT NULL,
-  `username` varchar(45) NOT NULL,
+  `player_id` varchar(45) NOT NULL,
   `date` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`logid`),
-  KEY `date` (`date`),
-  KEY `name` (`username`)
-) ENGINE=MyISAM AUTO_INCREMENT=493 DEFAULT CHARSET=latin1;
+  KEY `date` (`date`)
+) ENGINE=MyISAM AUTO_INCREMENT=964 DEFAULT CHARSET=latin1;
 
 /*Table structure for table `chests` */
 
@@ -188,7 +203,8 @@ DROP TABLE IF EXISTS `chests`;
 
 CREATE TABLE `chests` (
   `chestid` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `owner` varchar(60) NOT NULL,
+  `typeid` int(11) NOT NULL DEFAULT '0',
+  `owner_id` varchar(60) NOT NULL,
   `world` varchar(60) NOT NULL,
   `locx1` int(11) NOT NULL,
   `locy1` int(11) NOT NULL,
@@ -200,7 +216,7 @@ CREATE TABLE `chests` (
   PRIMARY KEY (`chestid`),
   UNIQUE KEY `coord1` (`world`,`locx1`,`locy1`,`locz1`),
   KEY `coord2` (`world`,`locx2`,`locy2`,`locz2`)
-) ENGINE=MyISAM AUTO_INCREMENT=27 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=78049 DEFAULT CHARSET=latin1;
 
 /*Table structure for table `chests_members` */
 
@@ -208,7 +224,8 @@ DROP TABLE IF EXISTS `chests_members`;
 
 CREATE TABLE `chests_members` (
   `chestid` int(11) unsigned NOT NULL,
-  `username` varchar(60) NOT NULL,
+  `player_id` varchar(60) NOT NULL,
+  `isop` tinyint(1) NOT NULL DEFAULT '0',
   KEY `chestid` (`chestid`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
@@ -240,7 +257,7 @@ CREATE TABLE `chunks` (
   `world` varchar(50) NOT NULL,
   PRIMARY KEY (`chunkid`),
   KEY `INX_LOC` (`world`,`locx`,`locz`,`locy`)
-) ENGINE=MyISAM AUTO_INCREMENT=8455 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=19829 DEFAULT CHARSET=latin1;
 
 /*Table structure for table `configvalues` */
 
@@ -250,7 +267,7 @@ CREATE TABLE `configvalues` (
   `ckey` varchar(50) NOT NULL,
   `cvalue` text NOT NULL,
   PRIMARY KEY (`ckey`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 /*Table structure for table `contentbag` */
 
@@ -260,7 +277,7 @@ CREATE TABLE `contentbag` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `bagsize` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=57 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=126 DEFAULT CHARSET=latin1;
 
 /*Table structure for table `contentbag_items` */
 
@@ -277,14 +294,14 @@ CREATE TABLE `contentbag_items` (
   KEY `bagid` (`bagid`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
-/*Table structure for table `converted_inventories` */
+/*Table structure for table `custom_map_images` */
 
-DROP TABLE IF EXISTS `converted_inventories`;
+DROP TABLE IF EXISTS `custom_map_images`;
 
-CREATE TABLE `converted_inventories` (
-  `playername` varchar(255) NOT NULL,
-  PRIMARY KEY (`playername`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+CREATE TABLE `custom_map_images` (
+  `map_id` int(11) DEFAULT NULL,
+  `image_data` blob
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 /*Table structure for table `deaths` */
 
@@ -302,7 +319,7 @@ DROP TABLE IF EXISTS `doors`;
 
 CREATE TABLE `doors` (
   `doorid` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `owner` varchar(60) NOT NULL,
+  `owner_id` varchar(60) NOT NULL,
   `world` varchar(60) NOT NULL,
   `locx1` int(11) NOT NULL,
   `locy1` int(11) NOT NULL,
@@ -314,7 +331,7 @@ CREATE TABLE `doors` (
   PRIMARY KEY (`doorid`),
   KEY `coord1` (`world`,`locx1`,`locy1`,`locz1`),
   KEY `coord2` (`world`,`locx2`,`locy2`,`locz2`)
-) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=37 DEFAULT CHARSET=latin1;
 
 /*Table structure for table `doors_members` */
 
@@ -322,9 +339,20 @@ DROP TABLE IF EXISTS `doors_members`;
 
 CREATE TABLE `doors_members` (
   `doorid` int(11) unsigned NOT NULL,
-  `username` varchar(60) NOT NULL,
+  `player_id` varchar(60) NOT NULL,
+  `isop` tinyint(1) NOT NULL DEFAULT '0',
   KEY `doorid` (`doorid`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+/*Table structure for table `end_city_visits` */
+
+DROP TABLE IF EXISTS `end_city_visits`;
+
+CREATE TABLE `end_city_visits` (
+  `player_id` varchar(180) DEFAULT NULL,
+  `start_time` double NOT NULL,
+  `leave_time` double NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 /*Table structure for table `enderchests` */
 
@@ -332,24 +360,12 @@ DROP TABLE IF EXISTS `enderchests`;
 
 CREATE TABLE `enderchests` (
   `chestid` int(11) NOT NULL AUTO_INCREMENT,
-  `username` varchar(50) NOT NULL,
+  `player_id` varchar(50) NOT NULL,
   `typeid` int(11) NOT NULL,
   `bagid` bigint(20) DEFAULT NULL,
   PRIMARY KEY (`chestid`),
-  KEY `INDX_USERNAME_TYPEID` (`username`,`typeid`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
-
-/*Table structure for table `fort_members` */
-
-DROP TABLE IF EXISTS `fort_members`;
-
-CREATE TABLE `fort_members` (
-  `memberid` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(55) NOT NULL,
-  `fortid` int(11) NOT NULL,
-  `rank` int(11) NOT NULL,
-  PRIMARY KEY (`memberid`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  KEY `INDX_USERNAME_TYPEID` (`typeid`)
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 /*Table structure for table `geolite_blocks` */
 
@@ -360,6 +376,17 @@ CREATE TABLE `geolite_blocks` (
   `endIpNum` int(11) NOT NULL,
   `locId` int(11) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+/*Table structure for table `geolite_country` */
+
+DROP TABLE IF EXISTS `geolite_country`;
+
+CREATE TABLE `geolite_country` (
+  `CountryCode` varchar(2) NOT NULL,
+  `Name` varchar(100) NOT NULL,
+  PRIMARY KEY (`CountryCode`),
+  UNIQUE KEY `CountryCode_UNIQUE` (`CountryCode`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 /*Table structure for table `geolite_location` */
 
@@ -376,26 +403,13 @@ CREATE TABLE `geolite_location` (
   PRIMARY KEY (`locId`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
-/*Table structure for table `held_items` */
-
-DROP TABLE IF EXISTS `held_items`;
-
-CREATE TABLE `held_items` (
-  `username` varchar(60) NOT NULL,
-  `id` int(11) NOT NULL,
-  `amount` int(11) NOT NULL,
-  `durability` int(11) NOT NULL,
-  `data` int(11) NOT NULL,
-  KEY `username` (`username`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
 /*Table structure for table `homes` */
 
 DROP TABLE IF EXISTS `homes`;
 
 CREATE TABLE `homes` (
   `ID` int(11) NOT NULL AUTO_INCREMENT,
-  `username` varchar(60) NOT NULL,
+  `player_id` varchar(60) NOT NULL,
   `homeid` int(11) NOT NULL,
   `homename` varchar(60) DEFAULT NULL,
   `world` varchar(60) NOT NULL,
@@ -404,45 +418,8 @@ CREATE TABLE `homes` (
   `locz` int(11) NOT NULL,
   `yaw` int(11) NOT NULL,
   PRIMARY KEY (`ID`),
-  UNIQUE KEY `coords` (`world`,`locx`,`locy`,`locz`)
-) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
-
-/*Table structure for table `infractions` */
-
-DROP TABLE IF EXISTS `infractions`;
-
-CREATE TABLE `infractions` (
-  `ID` int(11) NOT NULL AUTO_INCREMENT,
-  `player` varchar(60) NOT NULL,
-  `incidentTime` bigint(20) NOT NULL,
-  `extraInfo` varchar(255) NOT NULL,
-  `staffMember` varchar(60) NOT NULL,
-  PRIMARY KEY (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
-
-/*Table structure for table `ip_conlog` */
-
-DROP TABLE IF EXISTS `ip_conlog`;
-
-CREATE TABLE `ip_conlog` (
-  `ip_id` int(11) NOT NULL,
-  `name` varchar(45) NOT NULL,
-  `con_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`ip_id`,`name`,`con_date`),
-  KEY `FK_ip_id` (`ip_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
-/*Table structure for table `ip_gen` */
-
-DROP TABLE IF EXISTS `ip_gen`;
-
-CREATE TABLE `ip_gen` (
-  `ip_id` int(11) NOT NULL AUTO_INCREMENT,
-  `ip_addr` varchar(45) NOT NULL,
-  `ip_banned` int(11) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`ip_id`),
-  UNIQUE KEY `ip_addr_UNIQUE` (`ip_addr`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  KEY `coords` (`world`,`locx`,`locy`,`locz`)
+) ENGINE=MyISAM AUTO_INCREMENT=18 DEFAULT CHARSET=latin1;
 
 /*Table structure for table `ip_log` */
 
@@ -450,43 +427,15 @@ DROP TABLE IF EXISTS `ip_log`;
 
 CREATE TABLE `ip_log` (
   `logid` bigint(20) NOT NULL AUTO_INCREMENT,
-  `name` varchar(45) NOT NULL,
+  `player_id` varchar(45) NOT NULL,
   `ip` varchar(45) NOT NULL,
   `logtime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`logid`)
-) ENGINE=MyISAM AUTO_INCREMENT=249 DEFAULT CHARSET=latin1;
-
-/*Table structure for table `item` */
-
-DROP TABLE IF EXISTS `item`;
-
-CREATE TABLE `item` (
-  `itemid` int(11) NOT NULL,
-  `data` int(11) NOT NULL DEFAULT '0',
-  `buyprice` int(11) NOT NULL DEFAULT '0',
-  `sellprice` int(11) NOT NULL DEFAULT '0',
-  `pointsonly` int(11) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`itemid`,`data`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
-/*Table structure for table `item_shop` */
-
-DROP TABLE IF EXISTS `item_shop`;
-
-CREATE TABLE `item_shop` (
-  `shopid` int(11) NOT NULL AUTO_INCREMENT,
-  `owner` varchar(60) NOT NULL,
-  `bagid` bigint(20) NOT NULL,
-  `buy_amount` int(11) NOT NULL,
-  `buy_price` int(11) NOT NULL,
-  `status` int(1) NOT NULL,
-  `world` varchar(60) NOT NULL,
-  `locx` int(11) NOT NULL,
-  `locy` int(11) NOT NULL,
-  `locz` int(11) NOT NULL,
-  `flags` bigint(20) NOT NULL,
-  PRIMARY KEY (`shopid`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `logouttime` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`logid`),
+  KEY `ip` (`ip`),
+  KEY `ipplayer` (`player_id`,`ip`),
+  KEY `player_id` (`player_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=2473 DEFAULT CHARSET=latin1;
 
 /*Table structure for table `lot_banned` */
 
@@ -494,8 +443,9 @@ DROP TABLE IF EXISTS `lot_banned`;
 
 CREATE TABLE `lot_banned` (
   `lotid` int(11) NOT NULL,
-  `username` varchar(60) NOT NULL,
-  UNIQUE KEY `primairy` (`lotid`,`username`)
+  `player_id` varchar(60) NOT NULL,
+  `timeout` bigint(20) NOT NULL,
+  UNIQUE KEY `primairy` (`lotid`,`player_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 /*Table structure for table `lot_members` */
@@ -504,19 +454,9 @@ DROP TABLE IF EXISTS `lot_members`;
 
 CREATE TABLE `lot_members` (
   `lotid` int(11) NOT NULL,
-  `username` varchar(60) NOT NULL,
-  UNIQUE KEY `primairy` (`lotid`,`username`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
-/*Table structure for table `lot_messages` */
-
-DROP TABLE IF EXISTS `lot_messages`;
-
-CREATE TABLE `lot_messages` (
-  `lotid` int(11) NOT NULL,
-  `type` tinyint(4) NOT NULL,
-  `message` varchar(255) NOT NULL,
-  PRIMARY KEY (`lotid`,`type`)
+  `player_id` varchar(60) NOT NULL,
+  `isop` tinyint(1) NOT NULL DEFAULT '0',
+  UNIQUE KEY `primairy` (`lotid`,`player_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 /*Table structure for table `lot_names` */
@@ -531,13 +471,41 @@ CREATE TABLE `lot_names` (
   KEY `lotname` (`lotname`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
+/*Table structure for table `lot_respawns` */
+
+DROP TABLE IF EXISTS `lot_respawns`;
+
+CREATE TABLE `lot_respawns` (
+  `player_id` varchar(60) DEFAULT NULL,
+  `personalid` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+/*Table structure for table `lot_safelist` */
+
+DROP TABLE IF EXISTS `lot_safelist`;
+
+CREATE TABLE `lot_safelist` (
+  `lotid` int(11) DEFAULT NULL,
+  `player_id` varchar(60) DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+/*Table structure for table `lot_tags` */
+
+DROP TABLE IF EXISTS `lot_tags`;
+
+CREATE TABLE `lot_tags` (
+  `lot_id` int(11) NOT NULL,
+  `tag` text,
+  `public_tag` tinyint(4) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
 /*Table structure for table `lots` */
 
 DROP TABLE IF EXISTS `lots`;
 
 CREATE TABLE `lots` (
   `lotid` int(11) NOT NULL AUTO_INCREMENT,
-  `owner` varchar(60) NOT NULL,
+  `owner_id` varchar(60) NOT NULL,
   `lotnr` int(11) NOT NULL,
   `world` varchar(60) NOT NULL,
   `lotname` varchar(60) NOT NULL,
@@ -552,83 +520,32 @@ CREATE TABLE `lots` (
   `sz` int(11) NOT NULL,
   `yaw` int(11) NOT NULL DEFAULT '0',
   `flags` bigint(11) NOT NULL DEFAULT '0',
-  `creator` varchar(60) NOT NULL,
-  `lastedit` bigint(20) NOT NULL,
+  `creator_id` varchar(60) NOT NULL,
+  `creator` varchar(60) DEFAULT NULL,
+  `enter_msg` varchar(200) DEFAULT NULL,
+  `exit_msg` varchar(200) DEFAULT NULL,
+  `last_owner_edit` bigint(20) NOT NULL,
+  `last_member_edit` varchar(45) DEFAULT NULL,
+  `warp_count` int(11) NOT NULL DEFAULT '0',
   `hidden` tinyint(1) NOT NULL DEFAULT '0',
   `deleted` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`lotid`),
   KEY `lotnr` (`lotnr`),
-  KEY `owner` (`owner`),
-  KEY `lotnumbers` (`owner`,`lotnr`),
   KEY `lotname` (`lotname`),
-  KEY `coords` (`world`,`x1`,`x2`,`z1`,`z2`)
-) ENGINE=MyISAM AUTO_INCREMENT=43 DEFAULT CHARSET=latin1;
+  KEY `coords` (`world`,`x1`,`x2`,`z1`,`z2`),
+  KEY `lotnumbers` (`lotnr`)
+) ENGINE=MyISAM AUTO_INCREMENT=131 DEFAULT CHARSET=latin1;
 
-/*Table structure for table `lots_backup` */
+/*Table structure for table `owned_entities` */
 
-DROP TABLE IF EXISTS `lots_backup`;
+DROP TABLE IF EXISTS `owned_entities`;
 
-CREATE TABLE `lots_backup` (
-  `lotid` int(11) NOT NULL AUTO_INCREMENT,
-  `owner` varchar(60) NOT NULL,
-  `lotnr` int(11) NOT NULL,
-  `world` varchar(60) NOT NULL,
-  `lotname` varchar(60) NOT NULL,
-  `x1` int(11) NOT NULL,
-  `y1` int(11) NOT NULL DEFAULT '-1',
-  `z1` int(11) NOT NULL,
-  `x2` int(11) NOT NULL,
-  `y2` int(11) NOT NULL DEFAULT '-1',
-  `z2` int(11) NOT NULL,
-  `sx` int(11) NOT NULL,
-  `sy` int(11) NOT NULL,
-  `sz` int(11) NOT NULL,
-  `yaw` int(11) NOT NULL DEFAULT '0',
-  `flags` int(11) NOT NULL DEFAULT '0',
-  `creator` varchar(60) NOT NULL,
-  `lastedit` bigint(20) NOT NULL,
-  `hidden` tinyint(1) NOT NULL DEFAULT '0',
-  `deleted` tinyint(1) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`lotid`),
-  KEY `lotnr` (`lotnr`),
-  KEY `owner` (`owner`),
-  KEY `lotnumbers` (`owner`,`lotnr`),
-  KEY `lotname` (`lotname`),
-  KEY `coords` (`world`,`x1`,`x2`,`z1`,`z2`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
-/*Table structure for table `member_groups` */
-
-DROP TABLE IF EXISTS `member_groups`;
-
-CREATE TABLE `member_groups` (
-  `groupid` int(11) NOT NULL AUTO_INCREMENT,
-  `username` varchar(50) NOT NULL,
-  `groupname` varchar(50) NOT NULL,
-  PRIMARY KEY (`groupid`),
-  UNIQUE KEY `usergroup` (`username`,`groupname`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
-/*Table structure for table `member_users` */
-
-DROP TABLE IF EXISTS `member_users`;
-
-CREATE TABLE `member_users` (
-  `groupid` int(11) NOT NULL,
-  `username` varchar(50) NOT NULL,
-  PRIMARY KEY (`groupid`,`username`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
-/*Table structure for table `player_channels` */
-
-DROP TABLE IF EXISTS `player_channels`;
-
-CREATE TABLE `player_channels` (
-  `username` varchar(50) NOT NULL,
-  `channel` varchar(20) NOT NULL,
-  `num` int(11) NOT NULL,
-  PRIMARY KEY (`username`,`channel`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+CREATE TABLE `owned_entities` (
+  `owner_id` varchar(45) DEFAULT NULL,
+  `entityid` int(11) DEFAULT NULL,
+  `mostsigbits` bigint(20) DEFAULT NULL,
+  `leastsigbits` bigint(20) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 /*Table structure for table `player_failedlogin` */
 
@@ -636,50 +553,100 @@ DROP TABLE IF EXISTS `player_failedlogin`;
 
 CREATE TABLE `player_failedlogin` (
   `logid` bigint(20) NOT NULL AUTO_INCREMENT,
-  `username` varchar(60) NOT NULL,
+  `player_id` varchar(60) NOT NULL,
   `ip` varchar(60) NOT NULL,
   `logdate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`logid`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
+/*Table structure for table `player_infracts` */
+
+DROP TABLE IF EXISTS `player_infracts`;
+
+CREATE TABLE `player_infracts` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `player_id` varchar(60) CHARACTER SET utf8 NOT NULL,
+  `intensity` int(11) NOT NULL,
+  `dateGMT` bigint(20) NOT NULL,
+  `summary` varchar(100) CHARACTER SET utf8 NOT NULL,
+  `details` text CHARACTER SET utf8,
+  `staff_id` varchar(60) CHARACTER SET utf8 NOT NULL,
+  `revoker_id` varchar(60) CHARACTER SET utf8 DEFAULT NULL,
+  `revokeDateGMT` bigint(20) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 /*Table structure for table `player_inventory` */
 
 DROP TABLE IF EXISTS `player_inventory`;
 
 CREATE TABLE `player_inventory` (
-  `inventoryid` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(45) NOT NULL,
-  `inventorytype` int(11) NOT NULL,
-  `level` int(11) NOT NULL DEFAULT '-1',
-  `experience` float NOT NULL DEFAULT '-1',
-  `bagid` bigint(20) DEFAULT NULL,
-  `health` int(11) NOT NULL DEFAULT '20',
-  `hunger` int(11) NOT NULL DEFAULT '20',
-  PRIMARY KEY (`inventoryid`),
-  UNIQUE KEY `name_type_UNIQUE` (`name`,`inventorytype`)
-) ENGINE=MyISAM AUTO_INCREMENT=41 DEFAULT CHARSET=latin1;
+  `inventoryid` double DEFAULT NULL,
+  `player_id` varchar(135) NOT NULL,
+  `inventorytype` double NOT NULL,
+  `level` double NOT NULL,
+  `experience` float NOT NULL,
+  `bagid` double DEFAULT NULL,
+  `health` double NOT NULL,
+  `hunger` double NOT NULL,
+  `potioneffects` varchar(480) NOT NULL,
+  PRIMARY KEY (`player_id`,`inventorytype`)
+) ENGINE=MyISAM AUTO_INCREMENT=55 DEFAULT CHARSET=latin1;
+
+/*Table structure for table `player_mining_stick` */
+
+DROP TABLE IF EXISTS `player_mining_stick`;
+
+CREATE TABLE `player_mining_stick` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `player_id` varchar(60) NOT NULL,
+  `settings` double NOT NULL,
+  `size` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+
+/*Table structure for table `player_nicknames` */
+
+DROP TABLE IF EXISTS `player_nicknames`;
+
+CREATE TABLE `player_nicknames` (
+  `player_id` varchar(45) NOT NULL,
+  `target_id` varchar(45) NOT NULL,
+  `target_nickname` varchar(45) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 /*Table structure for table `player_password` */
 
 DROP TABLE IF EXISTS `player_password`;
 
 CREATE TABLE `player_password` (
-  `username` varchar(60) NOT NULL,
+  `player_id` varchar(60) NOT NULL,
   `password` blob NOT NULL,
   `dateset` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`username`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  PRIMARY KEY (`player_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 /*Table structure for table `player_permission` */
 
 DROP TABLE IF EXISTS `player_permission`;
 
 CREATE TABLE `player_permission` (
-  `name` varchar(50) NOT NULL,
+  `player_id` varchar(50) NOT NULL,
   `permissionid` int(11) NOT NULL,
   `disabled` tinyint(1) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`name`,`permissionid`)
+  PRIMARY KEY (`player_id`,`permissionid`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+/*Table structure for table `player_renames` */
+
+DROP TABLE IF EXISTS `player_renames`;
+
+CREATE TABLE `player_renames` (
+  `player_id` varchar(45) NOT NULL,
+  `rename_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `old_name` varchar(45) NOT NULL,
+  `new_name` varchar(45) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 /*Table structure for table `playermail` */
 
@@ -689,70 +656,49 @@ CREATE TABLE `playermail` (
   `ID` int(11) NOT NULL AUTO_INCREMENT,
   `datecreated` date DEFAULT NULL,
   `readmail` tinyint(1) DEFAULT NULL,
-  `toplayer` varchar(16) DEFAULT NULL,
-  `fromplayer` varchar(16) DEFAULT NULL,
+  `to_player_id` varchar(45) DEFAULT NULL,
+  `from_player_id` varchar(45) DEFAULT NULL,
   `title` varchar(30) DEFAULT NULL,
   `content` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=966 DEFAULT CHARSET=utf8;
 
 /*Table structure for table `players` */
 
 DROP TABLE IF EXISTS `players`;
 
 CREATE TABLE `players` (
-  `name` varchar(60) NOT NULL,
+  `player_id` varchar(180) NOT NULL,
+  `name` varchar(180) DEFAULT NULL,
   `lastlogin` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `onlinetime` float NOT NULL DEFAULT '0',
-  `pvppoints` int(11) NOT NULL DEFAULT '0',
-  `referralpoints` int(11) NOT NULL DEFAULT '0',
-  `votepoints` int(11) NOT NULL DEFAULT '0',
-  `balance` int(11) NOT NULL DEFAULT '0',
-  `bank` int(11) NOT NULL DEFAULT '0',
-  `settings` bigint(20) NOT NULL DEFAULT '0',
-  `playergroup` int(11) NOT NULL DEFAULT '-1',
-  `namecolour` varchar(10) NOT NULL DEFAULT 'x' COMMENT 'Hexvalue',
-  `backpack` bigint(20) DEFAULT NULL,
-  `ignorelist` text,
-  PRIMARY KEY (`name`)
+  `pvp_points` double NOT NULL DEFAULT '0',
+  `vote_points` double NOT NULL DEFAULT '0',
+  `valutas` double NOT NULL DEFAULT '0',
+  `valutas_in_bank` double NOT NULL DEFAULT '0',
+  `valutas_to_bank` double NOT NULL DEFAULT '0',
+  `valutas_to_player` double NOT NULL DEFAULT '0',
+  `settings` double NOT NULL DEFAULT '0',
+  `chat_sound_settings` double NOT NULL DEFAULT '0',
+  `playergroup` double NOT NULL DEFAULT '-1',
+  `namecolour` varchar(30) NOT NULL DEFAULT 'x',
+  `backpack` double DEFAULT NULL,
+  `last_version` varchar(45) NOT NULL DEFAULT 'unknown',
+  `refer_bonus` double NOT NULL DEFAULT '0',
+  `refer_type` double NOT NULL DEFAULT '0',
+  `refer_id` varchar(180) DEFAULT NULL,
+  PRIMARY KEY (`player_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
-/*Table structure for table `poll_answers` */
+/*Table structure for table `players_ignored` */
 
-DROP TABLE IF EXISTS `poll_answers`;
+DROP TABLE IF EXISTS `players_ignored`;
 
-CREATE TABLE `poll_answers` (
-  `ID` int(11) NOT NULL DEFAULT '0',
-  `username` varchar(60) NOT NULL DEFAULT '',
-  `answer` varchar(100) DEFAULT NULL,
-  PRIMARY KEY (`ID`,`username`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
-/*Table structure for table `poll_list` */
-
-DROP TABLE IF EXISTS `poll_list`;
-
-CREATE TABLE `poll_list` (
-  `ID` int(11) NOT NULL AUTO_INCREMENT,
-  `question` varchar(100) DEFAULT NULL,
-  `active` tinyint(1) DEFAULT '0',
-  `multipleChoice` tinyint(1) DEFAULT '0',
-  `minUserGroup` int(11) DEFAULT '8',
-  `reward` bigint(20) DEFAULT '0',
-  PRIMARY KEY (`ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
-/*Table structure for table `poll_options` */
-
-DROP TABLE IF EXISTS `poll_options`;
-
-CREATE TABLE `poll_options` (
-  `ID` int(11) NOT NULL,
-  `optionchoice` varchar(45) NOT NULL DEFAULT '',
-  `answer` varchar(20) DEFAULT NULL,
-  `correct` tinyint(1) DEFAULT '0',
-  PRIMARY KEY (`ID`,`optionchoice`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+CREATE TABLE `players_ignored` (
+  `player_id` varchar(60) DEFAULT NULL,
+  `ignored_player_id` varchar(60) DEFAULT NULL,
+  `ignored_player` varchar(60) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*Table structure for table `prefix` */
 
@@ -760,14 +706,14 @@ DROP TABLE IF EXISTS `prefix`;
 
 CREATE TABLE `prefix` (
   `prefixid` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(45) NOT NULL,
+  `player_id` varchar(45) NOT NULL,
   `subid` int(11) NOT NULL,
   `text` varchar(14) DEFAULT NULL,
   `color1` varchar(10) DEFAULT NULL,
   `color2` varchar(10) DEFAULT NULL,
   PRIMARY KEY (`prefixid`),
-  UNIQUE KEY `prefix_UNIQUE` (`name`,`subid`)
-) ENGINE=MyISAM AUTO_INCREMENT=16 DEFAULT CHARSET=latin1;
+  UNIQUE KEY `prefix_UNIQUE` (`subid`,`player_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=21 DEFAULT CHARSET=latin1;
 
 /*Table structure for table `presents` */
 
@@ -775,44 +721,12 @@ DROP TABLE IF EXISTS `presents`;
 
 CREATE TABLE `presents` (
   `presentid` int(11) NOT NULL AUTO_INCREMENT,
-  `creator` varchar(60) NOT NULL,
+  `creator_id` varchar(60) NOT NULL,
   `title` varchar(100) NOT NULL,
   `bagid` bigint(20) NOT NULL,
   `opened` bit(1) NOT NULL DEFAULT b'0',
   PRIMARY KEY (`presentid`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
-/*Table structure for table `pvp_kills` */
-
-DROP TABLE IF EXISTS `pvp_kills`;
-
-CREATE TABLE `pvp_kills` (
-  `username` varchar(60) NOT NULL,
-  `victim` varchar(60) NOT NULL,
-  `time` datetime NOT NULL,
-  KEY `username` (`username`),
-  KEY `victim` (`victim`),
-  KEY `time` (`time`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
-/*Table structure for table `pvp_leavers` */
-
-DROP TABLE IF EXISTS `pvp_leavers`;
-
-CREATE TABLE `pvp_leavers` (
-  `username` varchar(50) NOT NULL,
-  PRIMARY KEY (`username`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
-/*Table structure for table `pvp_opt` */
-
-DROP TABLE IF EXISTS `pvp_opt`;
-
-CREATE TABLE `pvp_opt` (
-  `username` varchar(60) NOT NULL,
-  `enabled` tinyint(1) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`username`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 /*Table structure for table `referral_forum_cache` */
 
@@ -841,28 +755,6 @@ CREATE TABLE `referral_list` (
   KEY `username` (`username`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
-/*Table structure for table `saved_inventory` */
-
-DROP TABLE IF EXISTS `saved_inventory`;
-
-CREATE TABLE `saved_inventory` (
-  `username` varchar(60) NOT NULL,
-  `slot` int(11) NOT NULL,
-  `id` int(11) NOT NULL,
-  `amount` int(11) NOT NULL,
-  `durability` int(11) NOT NULL,
-  `data` int(11) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
-/*Table structure for table `shop_members` */
-
-DROP TABLE IF EXISTS `shop_members`;
-
-CREATE TABLE `shop_members` (
-  `shopid` int(11) DEFAULT NULL,
-  `username` varchar(60) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
 /*Table structure for table `staff_requests` */
 
 DROP TABLE IF EXISTS `staff_requests`;
@@ -871,32 +763,37 @@ CREATE TABLE `staff_requests` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `datecreated` date DEFAULT NULL,
   `hasread` tinyint(1) DEFAULT '0',
-  `creator` varchar(15) DEFAULT NULL,
+  `creator_id` varchar(45) DEFAULT NULL,
   `message` varchar(200) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-/*Table structure for table `stored_inventory` */
+/*Table structure for table `switches` */
 
-DROP TABLE IF EXISTS `stored_inventory`;
+DROP TABLE IF EXISTS `switches`;
 
-CREATE TABLE `stored_inventory` (
-  `idstored_inventory` int(11) NOT NULL AUTO_INCREMENT,
-  `username` varchar(45) NOT NULL,
-  `name` varchar(45) NOT NULL,
-  `inventory` blob NOT NULL,
-  `converted` int(11) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`idstored_inventory`),
-  UNIQUE KEY `Unique` (`username`,`name`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+CREATE TABLE `switches` (
+  `switchid` int(11) NOT NULL AUTO_INCREMENT,
+  `owner_id` varchar(50) CHARACTER SET utf8 NOT NULL,
+  `locx` int(11) NOT NULL,
+  `locy` int(11) NOT NULL,
+  `locz` int(11) NOT NULL,
+  `world` varchar(50) CHARACTER SET utf8 NOT NULL,
+  `flags` bigint(20) NOT NULL,
+  PRIMARY KEY (`switchid`),
+  KEY `location` (`locx`,`locy`,`locz`,`world`)
+) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
-/*Table structure for table `tmp` */
+/*Table structure for table `switches_links` */
 
-DROP TABLE IF EXISTS `tmp`;
+DROP TABLE IF EXISTS `switches_links`;
 
-CREATE TABLE `tmp` (
-  `lotid` int(11) NOT NULL,
-  PRIMARY KEY (`lotid`)
+CREATE TABLE `switches_links` (
+  `switchA` int(11) NOT NULL,
+  `switchB` int(11) NOT NULL,
+  PRIMARY KEY (`switchA`,`switchB`),
+  KEY `switchA` (`switchA`),
+  KEY `switchB` (`switchB`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 /*Table structure for table `trapdoors` */
@@ -905,23 +802,37 @@ DROP TABLE IF EXISTS `trapdoors`;
 
 CREATE TABLE `trapdoors` (
   `trapdoorid` int(11) NOT NULL AUTO_INCREMENT,
-  `owner` varchar(60) NOT NULL,
+  `owner_id` varchar(60) NOT NULL,
   `world` varchar(60) NOT NULL,
   `locx` int(11) NOT NULL,
   `locy` int(11) NOT NULL,
   `locz` int(11) NOT NULL,
   `flags` bigint(20) NOT NULL,
   PRIMARY KEY (`trapdoorid`)
-) ENGINE=InnoDB AUTO_INCREMENT=43 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 /*Table structure for table `trapdoors_members` */
 
 DROP TABLE IF EXISTS `trapdoors_members`;
 
 CREATE TABLE `trapdoors_members` (
-  `trapdoorid` int(11) DEFAULT NULL,
-  `username` varchar(60) DEFAULT NULL
+  `trapdoorid` int(11) NOT NULL,
+  `player_id` varchar(60) NOT NULL,
+  `isop` tinyint(1) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+/*Table structure for table `trash_items` */
+
+DROP TABLE IF EXISTS `trash_items`;
+
+CREATE TABLE `trash_items` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `typeid` int(11) NOT NULL,
+  `data` int(11) NOT NULL,
+  `amount` int(11) NOT NULL,
+  `itemdata` longblob,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=4892 DEFAULT CHARSET=utf8;
 
 /*Table structure for table `version` */
 
@@ -938,11 +849,10 @@ CREATE TABLE `version` (
 DROP TABLE IF EXISTS `vote_log`;
 
 CREATE TABLE `vote_log` (
-  `username` varchar(60) DEFAULT NULL,
+  `player_id` varchar(60) DEFAULT NULL,
   `ip` varchar(60) DEFAULT NULL,
   `service` varchar(60) DEFAULT NULL,
-  `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  KEY `username` (`username`)
+  `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 /*Table structure for table `warps` */
@@ -956,12 +866,12 @@ CREATE TABLE `warps` (
   `locx` int(11) NOT NULL,
   `locy` int(11) NOT NULL,
   `locz` int(11) NOT NULL,
-  `hidden` int(2) NOT NULL DEFAULT '0',
+  `settings` bigint(20) NOT NULL,
   `yaw` int(11) NOT NULL DEFAULT '0',
   `comment` varchar(2000) NOT NULL,
   PRIMARY KEY (`idwarps`),
   UNIQUE KEY `unique` (`name`)
-) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=45 DEFAULT CHARSET=latin1;
 
 /*Table structure for table `waypoints` */
 
@@ -969,7 +879,7 @@ DROP TABLE IF EXISTS `waypoints`;
 
 CREATE TABLE `waypoints` (
   `waypointid` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `owner` varchar(60) NOT NULL,
+  `owner_id` varchar(60) NOT NULL,
   `world` varchar(60) NOT NULL,
   `locx` int(11) NOT NULL,
   `locy` int(11) NOT NULL,
@@ -980,9 +890,10 @@ CREATE TABLE `waypoints` (
   `tlocz` int(11) NOT NULL,
   `tyaw` float NOT NULL,
   `flags` bigint(11) NOT NULL,
+  `cost_type` int(11) NOT NULL,
   PRIMARY KEY (`waypointid`),
   UNIQUE KEY `loc` (`world`,`locx`,`locy`,`locz`)
-) ENGINE=MyISAM AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=54 DEFAULT CHARSET=latin1;
 
 /*Table structure for table `waypoints_members` */
 
@@ -990,7 +901,8 @@ DROP TABLE IF EXISTS `waypoints_members`;
 
 CREATE TABLE `waypoints_members` (
   `waypointid` int(11) unsigned NOT NULL,
-  `username` varchar(60) NOT NULL,
+  `player_id` varchar(60) NOT NULL,
+  `isop` tinyint(1) NOT NULL DEFAULT '0',
   KEY `chestid` (`waypointid`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
@@ -1020,6 +932,21 @@ BEGIN
 END */$$
 DELIMITER ;
 
+/* Function  structure for function  `getplayerid` */
+
+/*!50003 DROP FUNCTION IF EXISTS `getplayerid` */;
+DELIMITER $$
+
+/*!50003 CREATE DEFINER=`root`@`localhost` FUNCTION `getplayerid`(input_name VARCHAR(45)) RETURNS varchar(60) CHARSET latin1
+    READS SQL DATA
+    DETERMINISTIC
+BEGIN
+  DECLARE return_id VARCHAR(60);
+  SELECT player_id INTO return_id FROM players WHERE LOWER(NAME) = LOWER(input_name) LIMIT 1;  
+  RETURN return_id;
+END */$$
+DELIMITER ;
+
 /* Procedure structure for procedure `cleanup_assignable_lots` */
 
 /*!50003 DROP PROCEDURE IF EXISTS  `cleanup_assignable_lots` */;
@@ -1046,29 +973,6 @@ DELETE FROM block_breaks WHERE `time` < DATE_SUB(NOW(), INTERVAL 4 MONTH);
 DELETE FROM chestlog WHERE `date` < DATE_SUB(NOW(), INTERVAL 4 MONTH);
     END */$$
 DELIMITER ;
-
-/*Table structure for table `non-goldy-prefixes` */
-
-DROP TABLE IF EXISTS `non-goldy-prefixes`;
-
-/*!50001 DROP VIEW IF EXISTS `non-goldy-prefixes` */;
-/*!50001 DROP TABLE IF EXISTS `non-goldy-prefixes` */;
-
-/*!50001 CREATE TABLE  `non-goldy-prefixes`(
- `prefixid` int(11) ,
- `name` varchar(45) ,
- `subid` int(11) ,
- `text` varchar(14) ,
- `color1` varchar(10) ,
- `color2` varchar(10) 
-)*/;
-
-/*View structure for view non-goldy-prefixes */
-
-/*!50001 DROP TABLE IF EXISTS `non-goldy-prefixes` */;
-/*!50001 DROP VIEW IF EXISTS `non-goldy-prefixes` */;
-
-/*!50001 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `non-goldy-prefixes` AS (select `prefix`.`prefixid` AS `prefixid`,`prefix`.`name` AS `name`,`prefix`.`subid` AS `subid`,`prefix`.`text` AS `text`,`prefix`.`color1` AS `color1`,`prefix`.`color2` AS `color2` from (`prefix` join `players` on((`prefix`.`name` = `players`.`name`))) where (`players`.`playergroup` > 6)) */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
