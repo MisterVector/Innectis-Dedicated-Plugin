@@ -59,7 +59,7 @@ import org.bukkit.Material;
 import org.bukkit.block.Banner;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
-import org.bukkit.craftbukkit.v1_11_R1.entity.CraftPlayer;
+import org.bukkit.craftbukkit.v1_12_R1.entity.CraftPlayer;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Ghast;
 import org.bukkit.entity.LivingEntity;
@@ -320,9 +320,9 @@ public class IdpPlayer extends IdpCommandSender<CraftPlayer> {
             // Do not send to yourself
             if (!pl.getName().equals(player.getName())) {
                 // Remove old entity
-                pl.getHandle().getHandle().playerConnection.sendPacket(new net.minecraft.server.v1_11_R1.PacketPlayOutEntityDestroy(getHandle().getEntityId()));
+                pl.getHandle().getHandle().playerConnection.sendPacket(new net.minecraft.server.v1_12_R1.PacketPlayOutEntityDestroy(getHandle().getEntityId()));
                 // Spawn new entity
-                pl.getHandle().getHandle().playerConnection.sendPacket(new net.minecraft.server.v1_11_R1.PacketPlayOutNamedEntitySpawn(getHandle().getHandle()));
+                pl.getHandle().getHandle().playerConnection.sendPacket(new net.minecraft.server.v1_12_R1.PacketPlayOutNamedEntitySpawn(getHandle().getHandle()));
             }
         }
     }

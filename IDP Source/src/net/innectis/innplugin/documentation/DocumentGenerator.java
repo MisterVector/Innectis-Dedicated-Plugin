@@ -47,7 +47,7 @@ import org.bukkit.configuration.file.YamlConfiguration;
 public class DocumentGenerator {
 
     public static void main(String args[]) throws Exception {
-        String name = Configuration.PLUGIN_NAME;
+        String name = Configuration.PLUGIN_NAME.replace(' ', '_');
         String author = "Hret, The_Lynxy, AlphaBlend & Nosliw";
         String version = Configuration.PLUGIN_VERSION;
         String main = "net.innectis.innplugin.InnPlugin";

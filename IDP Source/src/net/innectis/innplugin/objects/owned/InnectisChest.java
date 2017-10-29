@@ -25,7 +25,7 @@ import org.bukkit.World;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
 import org.bukkit.block.Chest;
-import org.bukkit.craftbukkit.v1_11_R1.block.CraftChest;
+import org.bukkit.craftbukkit.v1_12_R1.block.CraftChest;
 import org.bukkit.inventory.Inventory;
 
 /**

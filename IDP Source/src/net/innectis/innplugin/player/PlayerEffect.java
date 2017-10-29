@@ -1,9 +1,9 @@
 package net.innectis.innplugin.player;
 
-import net.minecraft.server.v1_11_R1.MobEffect;
-import net.minecraft.server.v1_11_R1.MobEffectList;
-import net.minecraft.server.v1_11_R1.PacketPlayOutEntityEffect;
-import net.minecraft.server.v1_11_R1.PacketPlayOutRemoveEntityEffect;
+import net.minecraft.server.v1_12_R1.MobEffect;
+import net.minecraft.server.v1_12_R1.MobEffectList;
+import net.minecraft.server.v1_12_R1.PacketPlayOutEntityEffect;
+import net.minecraft.server.v1_12_R1.PacketPlayOutRemoveEntityEffect;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 import org.bukkit.DyeColor;
-import org.bukkit.craftbukkit.v1_11_R1.entity.CraftTameableAnimal;
+import org.bukkit.craftbukkit.v1_12_R1.entity.CraftTameableAnimal;
 import org.bukkit.entity.AbstractHorse;
 import org.bukkit.entity.AnimalTamer;
 import org.bukkit.entity.Animals;

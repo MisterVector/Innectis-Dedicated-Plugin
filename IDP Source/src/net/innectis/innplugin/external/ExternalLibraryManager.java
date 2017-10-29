@@ -3,6 +3,7 @@ package net.innectis.innplugin.external;
 import java.io.File;
 import net.innectis.innplugin.external.api.VotifierIDP;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.lang.ref.WeakReference;
 import java.util.HashMap;
 import net.innectis.innplugin.Configuration;
@@ -136,7 +137,8 @@ public class ExternalLibraryManager {
             InputStream stream = ExternalLibraryManager.class.getResourceAsStream("/libraries.yml");
 
             if (stream != null) {
-                config = YamlConfiguration.loadConfiguration(stream);
+                InputStreamReader reader = new InputStreamReader(stream);
+                config = YamlConfiguration.loadConfiguration(reader);
 
                 if (config != null) {
                     configuration = new WeakReference<YamlConfiguration>(config);

@@ -5,7 +5,7 @@ import java.util.Iterator;
 import java.util.List;
 import net.innectis.innplugin.Configuration;
 import org.bukkit.Location;
-import org.bukkit.craftbukkit.v1_11_R1.entity.CraftTameableAnimal;
+import org.bukkit.craftbukkit.v1_12_R1.entity.CraftTameableAnimal;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Tameable;
 

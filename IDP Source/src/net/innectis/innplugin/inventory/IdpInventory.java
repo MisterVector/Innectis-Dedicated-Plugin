@@ -7,10 +7,10 @@ import net.innectis.innplugin.items.IdpMaterial;
 import net.innectis.innplugin.items.StackBag;
 import net.innectis.innplugin.NotchcodeUsage;
 import net.innectis.innplugin.player.IdpPlayer;
-import net.minecraft.server.v1_11_R1.IInventory;
+import net.minecraft.server.v1_12_R1.IInventory;
 import org.bukkit.Material;
-import org.bukkit.craftbukkit.v1_11_R1.inventory.CraftInventory;
-import org.bukkit.craftbukkit.v1_11_R1.inventory.CraftInventoryDoubleChest;
+import org.bukkit.craftbukkit.v1_12_R1.inventory.CraftInventory;
+import org.bukkit.craftbukkit.v1_12_R1.inventory.CraftInventoryDoubleChest;
 import org.bukkit.inventory.Inventory;
 
 /**

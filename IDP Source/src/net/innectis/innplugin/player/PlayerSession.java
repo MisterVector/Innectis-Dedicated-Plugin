@@ -56,7 +56,7 @@ import net.innectis.innplugin.tasks.LimitedTask;
 import net.innectis.innplugin.tasks.RunBehaviour;
 import net.innectis.innplugin.util.DateUtil;
 import net.innectis.innplugin.util.StringUtil;
-import net.minecraft.server.v1_11_R1.PacketPlayOutCamera;
+import net.minecraft.server.v1_12_R1.PacketPlayOutCamera;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.block.Block;

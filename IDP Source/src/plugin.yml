@@ -1,6 +1,6 @@
-name: Innectis Dedicated Plugin
-author: Hretsam, The_Lynxy, AlphaBlend & Nosliw
-version: 12.0.0
+name: Innectis_Dedicated_Plugin
+author: Hret, The_Lynxy, AlphaBlend & Nosliw
+version: 11.1.0
 main: net.innectis.innplugin.InnPlugin
 loadbefore:
 - dynmap
@@ -14,10 +14,10 @@ commands:
   cleanup:
     description: ''
     usage: ''
-  createpicture:
+  setgroup:
     description: ''
     usage: ''
-  setgroup:
+  createpicture:
     description: ''
     usage: ''
   delworld:
@@ -32,6 +32,12 @@ commands:
   createlotarea:
     description: ''
     usage: ''
+  slogin:
+    description: ''
+    usage: ''
+  sresetnames:
+    description: ''
+    usage: ''
   sudo:
     description: ''
     usage: ''
@@ -41,31 +47,19 @@ commands:
   ssetname:
     description: ''
     usage: ''
-  slogin:
-    description: ''
-    usage: ''
-  sresetnames:
-    description: ''
-    usage: ''
-  utility:
-    description: ''
-    usage: ''
-  util:
-    description: ''
-    usage: ''
   playerpasswords:
     description: ''
     usage: ''
   ppw:
     description: ''
     usage: ''
+  maintenance:
+    description: ''
+    usage: ''
   setguestpromotearea:
     description: ''
     usage: ''
   unloadworldchunks:
-    description: ''
-    usage: ''
-  maintenance:
     description: ''
     usage: ''
   fillcontainer:
@@ -77,10 +71,10 @@ commands:
   listinv:
     description: ''
     usage: ''
-  openenderchest:
+  utility:
     description: ''
     usage: ''
-  openechest:
+  util:
     description: ''
     usage: ''
   gc:
@@ -125,12 +119,6 @@ commands:
   inventoryset:
     description: ''
     usage: ''
-  setfloatingtext:
-    description: ''
-    usage: ''
-  sft:
-    description: ''
-    usage: ''
   knockback:
     description: ''
     usage: ''
@@ -140,7 +128,16 @@ commands:
   kb:
     description: ''
     usage: ''
-  enchant:
+  openenderchest:
+    description: ''
+    usage: ''
+  openechest:
+    description: ''
+    usage: ''
+  setfloatingtext:
+    description: ''
+    usage: ''
+  sft:
     description: ''
     usage: ''
   equip:
@@ -156,6 +153,9 @@ commands:
     description: ''
     usage: ''
   itemdata:
+    description: ''
+    usage: ''
+  enchant:
     description: ''
     usage: ''
   spawnmob:
@@ -194,13 +194,13 @@ commands:
   sclynx:
     description: ''
     usage: ''
+  playerinfo:
+    description: ''
+    usage: ''
   plugins:
     description: ''
     usage: ''
   pl:
-    description: ''
-    usage: ''
-  playerinfo:
     description: ''
     usage: ''
   setspawn:
@@ -210,6 +210,9 @@ commands:
     description: ''
     usage: ''
   resync:
+    description: ''
+    usage: ''
+  lot:
     description: ''
     usage: ''
   putlothere:
@@ -227,19 +230,16 @@ commands:
   reloadlots:
     description: ''
     usage: ''
-  lot:
-    description: ''
-    usage: ''
   savelots:
     description: ''
     usage: ''
   jump:
     description: ''
     usage: ''
-  setdata:
+  kill:
     description: ''
     usage: ''
-  kill:
+  setdata:
     description: ''
     usage: ''
   test:
@@ -249,6 +249,9 @@ commands:
     description: ''
     usage: ''
   spike:
+    description: ''
+    usage: ''
+  boom:
     description: ''
     usage: ''
   setimage:
@@ -296,16 +299,16 @@ commands:
   addwarp:
     description: ''
     usage: ''
-  massowner:
-    description: ''
-    usage: ''
-  mo:
-    description: ''
-    usage: ''
   delwarp:
     description: ''
     usage: ''
   setowner:
+    description: ''
+    usage: ''
+  massowner:
+    description: ''
+    usage: ''
+  mo:
     description: ''
     usage: ''
   changelotheight:
@@ -338,16 +341,16 @@ commands:
   setinformationtooltype:
     description: ''
     usage: ''
-  platform:
-    description: ''
-    usage: ''
-  fly:
-    description: ''
-    usage: ''
   item:
     description: ''
     usage: ''
   i:
+    description: ''
+    usage: ''
+  platform:
+    description: ''
+    usage: ''
+  fly:
     description: ''
     usage: ''
   weather:
@@ -383,6 +386,24 @@ commands:
   clf:
     description: ''
     usage: ''
+  addlot:
+    description: ''
+    usage: ''
+  assignlot:
+    description: ''
+    usage: ''
+  listlots:
+    description: ''
+    usage: ''
+  lotstack:
+    description: ''
+    usage: ''
+  lotcount:
+    description: ''
+    usage: ''
+  randomlot:
+    description: ''
+    usage: ''
   checkmemberbuild:
     description: ''
     usage: ''
@@ -414,24 +435,6 @@ commands:
     description: ''
     usage: ''
   lle:
-    description: ''
-    usage: ''
-  addlot:
-    description: ''
-    usage: ''
-  assignlot:
-    description: ''
-    usage: ''
-  listlots:
-    description: ''
-    usage: ''
-  lotstack:
-    description: ''
-    usage: ''
-  lotcount:
-    description: ''
-    usage: ''
-  randomlot:
     description: ''
     usage: ''
   remlot:
@@ -521,6 +524,12 @@ commands:
   v:
     description: ''
     usage: ''
+  twsendselection:
+    description: ''
+    usage: ''
+  twss:
+    description: ''
+    usage: ''
   twtakeover:
     description: ''
     usage: ''
@@ -528,12 +537,6 @@ commands:
     description: ''
     usage: ''
   twregen:
-    description: ''
-    usage: ''
-  twsendselection:
-    description: ''
-    usage: ''
-  twss:
     description: ''
     usage: ''
   request:
@@ -554,22 +557,25 @@ commands:
   resetprefix:
     description: ''
     usage: ''
-  tp:
-    description: ''
-    usage: ''
-  teleport:
-    description: ''
-    usage: ''
   massaccess:
     description: ''
     usage: ''
   ma:
     description: ''
     usage: ''
+  tp:
+    description: ''
+    usage: ''
+  teleport:
+    description: ''
+    usage: ''
   respawnlot:
     description: ''
     usage: ''
   rl:
+    description: ''
+    usage: ''
+  lights:
     description: ''
     usage: ''
   craft:
@@ -594,6 +600,15 @@ commands:
     description: ''
     usage: ''
   helm:
+    description: ''
+    usage: ''
+  twclipboard:
+    description: ''
+    usage: ''
+  twclip:
+    description: ''
+    usage: ''
+  twc:
     description: ''
     usage: ''
   twoutline:
@@ -624,15 +639,6 @@ commands:
     description: ''
     usage: ''
   twrotate:
-    description: ''
-    usage: ''
-  twclipboard:
-    description: ''
-    usage: ''
-  twclip:
-    description: ''
-    usage: ''
-  twc:
     description: ''
     usage: ''
   deletehome:
@@ -693,6 +699,15 @@ commands:
     description: ''
     usage: ''
   j:
+    description: ''
+    usage: ''
+  emote:
+    description: ''
+    usage: ''
+  em:
+    description: ''
+    usage: ''
+  me:
     description: ''
     usage: ''
   leave:
@@ -768,15 +783,6 @@ commands:
     description: ''
     usage: ''
   chlist:
-    description: ''
-    usage: ''
-  emote:
-    description: ''
-    usage: ''
-  em:
-    description: ''
-    usage: ''
-  me:
     description: ''
     usage: ''
   score:
@@ -863,6 +869,12 @@ commands:
   setwelcomemsg:
     description: ''
     usage: ''
+  link:
+    description: ''
+    usage: ''
+  bleach:
+    description: ''
+    usage: ''
   sortchest:
     description: ''
     usage: ''
@@ -875,16 +887,10 @@ commands:
   order:
     description: ''
     usage: ''
-  bleach:
-    description: ''
-    usage: ''
   present:
     description: ''
     usage: ''
   createpresent:
-    description: ''
-    usage: ''
-  link:
     description: ''
     usage: ''
   findObject:
@@ -905,18 +911,6 @@ commands:
   heal:
     description: ''
     usage: ''
-  reply:
-    description: ''
-    usage: ''
-  r:
-    description: ''
-    usage: ''
-  channel:
-    description: ''
-    usage: ''
-  ch:
-    description: ''
-    usage: ''
   msg:
     description: ''
     usage: ''
@@ -932,6 +926,27 @@ commands:
   tell:
     description: ''
     usage: ''
+  reply:
+    description: ''
+    usage: ''
+  r:
+    description: ''
+    usage: ''
+  channel:
+    description: ''
+    usage: ''
+  ch:
+    description: ''
+    usage: ''
+  statistics:
+    description: ''
+    usage: ''
+  stats:
+    description: ''
+    usage: ''
+  serverinfo:
+    description: ''
+    usage: ''
   commandlist:
     description: ''
     usage: ''
@@ -942,33 +957,6 @@ commands:
     description: ''
     usage: ''
   cmd:
-    description: ''
-    usage: ''
-  statistics:
-    description: ''
-    usage: ''
-  stats:
-    description: ''
-    usage: ''
-  valutasink:
-    description: ''
-    usage: ''
-  vtsink:
-    description: ''
-    usage: ''
-  vsink:
-    description: ''
-    usage: ''
-  cmdinfo:
-    description: ''
-    usage: ''
-  countitem:
-    description: ''
-    usage: ''
-  help:
-    description: ''
-    usage: ''
-  id:
     description: ''
     usage: ''
   version:
@@ -984,6 +972,27 @@ commands:
     description: ''
     usage: ''
   omversion:
+    description: ''
+    usage: ''
+  valutasink:
+    description: ''
+    usage: ''
+  vtsink:
+    description: ''
+    usage: ''
+  vsink:
+    description: ''
+    usage: ''
+  cmdinfo:
+    description: ''
+    usage: ''
+  help:
+    description: ''
+    usage: ''
+  id:
+    description: ''
+    usage: ''
+  countitem:
     description: ''
     usage: ''
   ping:
@@ -1007,9 +1016,6 @@ commands:
   world:
     description: ''
     usage: ''
-  serverinfo:
-    description: ''
-    usage: ''
   compass:
     description: ''
     usage: ''
@@ -1017,15 +1023,6 @@ commands:
     description: ''
     usage: ''
   warp:
-    description: ''
-    usage: ''
-  allowedlots:
-    description: ''
-    usage: ''
-  al:
-    description: ''
-    usage: ''
-  setlotname:
     description: ''
     usage: ''
   wholot:
@@ -1067,6 +1064,15 @@ commands:
   myplot:
     description: ''
     usage: ''
+  allowedlots:
+    description: ''
+    usage: ''
+  al:
+    description: ''
+    usage: ''
+  setlotname:
+    description: ''
+    usage: ''
   setlotnr:
     description: ''
     usage: ''
@@ -1076,22 +1082,22 @@ commands:
   thatlot:
     description: ''
     usage: ''
+  unsitpets:
+    description: ''
+    usage: ''
   editsign:
     description: ''
     usage: ''
   es:
     description: ''
     usage: ''
+  clearchat:
+    description: ''
+    usage: ''
   allow:
     description: ''
     usage: ''
   grant:
-    description: ''
-    usage: ''
-  clearchat:
-    description: ''
-    usage: ''
-  unsitpets:
     description: ''
     usage: ''
   deny:
@@ -1112,9 +1118,6 @@ commands:
   save:
     description: ''
     usage: ''
-  lights:
-    description: ''
-    usage: ''
   mcboost:
     description: ''
     usage: ''
@@ -1131,27 +1134,6 @@ commands:
     description: ''
     usage: ''
   esw:
-    description: ''
-    usage: ''
-  transfercaughtentities:
-    description: ''
-    usage: ''
-  tce:
-    description: ''
-    usage: ''
-  staffrequest:
-    description: ''
-    usage: ''
-  sr:
-    description: ''
-    usage: ''
-  massremove:
-    description: ''
-    usage: ''
-  mremove:
-    description: ''
-    usage: ''
-  mr:
     description: ''
     usage: ''
   die:
@@ -1229,10 +1211,25 @@ commands:
   chatsounds:
     description: ''
     usage: ''
-  setshopitem:
+  transfercaughtentities:
     description: ''
     usage: ''
-  ssi:
+  tce:
+    description: ''
+    usage: ''
+  staffrequest:
+    description: ''
+    usage: ''
+  sr:
+    description: ''
+    usage: ''
+  massremove:
+    description: ''
+    usage: ''
+  mremove:
+    description: ''
+    usage: ''
+  mr:
     description: ''
     usage: ''
   bank:
@@ -1263,6 +1260,12 @@ commands:
     description: ''
     usage: ''
   bal:
+    description: ''
+    usage: ''
+  setshopitem:
+    description: ''
+    usage: ''
+  ssi:
     description: ''
     usage: ''
   accept:

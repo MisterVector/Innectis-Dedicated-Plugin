@@ -11,24 +11,24 @@ import net.innectis.innplugin.location.skyandspopulators.SkylandsPlusMushroomPop
 import net.innectis.innplugin.location.skyandspopulators.SkylandsPlusPumpkinPopulator;
 import net.innectis.innplugin.location.skyandspopulators.SkylandsPlusTreePopulator;
 import net.innectis.innplugin.util.MagicValueUtil;
-import net.minecraft.server.v1_11_R1.Block;
-import net.minecraft.server.v1_11_R1.Blocks;
-import net.minecraft.server.v1_11_R1.ChunkSnapshot;
-import net.minecraft.server.v1_11_R1.IChunkProvider;
-import net.minecraft.server.v1_11_R1.NoiseGeneratorOctaves;
-import net.minecraft.server.v1_11_R1.WorldGenCanyon;
-import net.minecraft.server.v1_11_R1.WorldGenCaves;
-import net.minecraft.server.v1_11_R1.WorldGenCavesHell;
-import net.minecraft.server.v1_11_R1.WorldGenLargeFeature;
-import net.minecraft.server.v1_11_R1.WorldGenMineshaft;
-import net.minecraft.server.v1_11_R1.WorldGenNether;
-import net.minecraft.server.v1_11_R1.WorldGenStronghold;
-import net.minecraft.server.v1_11_R1.WorldGenVillage;
+import net.minecraft.server.v1_12_R1.Block;
+import net.minecraft.server.v1_12_R1.Blocks;
+import net.minecraft.server.v1_12_R1.ChunkSnapshot;
+import net.minecraft.server.v1_12_R1.IChunkProvider;
+import net.minecraft.server.v1_12_R1.NoiseGeneratorOctaves;
+import net.minecraft.server.v1_12_R1.WorldGenCanyon;
+import net.minecraft.server.v1_12_R1.WorldGenCaves;
+import net.minecraft.server.v1_12_R1.WorldGenCavesHell;
+import net.minecraft.server.v1_12_R1.WorldGenLargeFeature;
+import net.minecraft.server.v1_12_R1.WorldGenMineshaft;
+import net.minecraft.server.v1_12_R1.WorldGenNether;
+import net.minecraft.server.v1_12_R1.WorldGenStronghold;
+import net.minecraft.server.v1_12_R1.WorldGenVillage;
 import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.World.Environment;
 import org.bukkit.block.Biome;
-import org.bukkit.craftbukkit.v1_11_R1.CraftWorld;
+import org.bukkit.craftbukkit.v1_12_R1.CraftWorld;
 import org.bukkit.generator.BlockPopulator;
 import org.bukkit.generator.ChunkGenerator;
 
@@ -512,7 +512,7 @@ public class SkylandsPlusChunkGenerator extends ChunkGenerator {
 			}
 		}
 
-		net.minecraft.server.v1_11_R1.World mcWorld = ((CraftWorld) world).getHandle();
+		net.minecraft.server.v1_12_R1.World mcWorld = ((CraftWorld) world).getHandle();
                 IChunkProvider cp = mcWorld.getChunkProvider();
                 ChunkSnapshot cs = new ChunkSnapshot();
 

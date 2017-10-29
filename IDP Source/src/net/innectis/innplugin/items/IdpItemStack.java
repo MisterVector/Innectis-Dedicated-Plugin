@@ -1,6 +1,6 @@
 package net.innectis.innplugin.items;
 
-import org.bukkit.craftbukkit.v1_11_R1.inventory.CraftItemStack;
+import org.bukkit.craftbukkit.v1_12_R1.inventory.CraftItemStack;
 import org.bukkit.inventory.ItemStack;
 
 /**
@@ -166,7 +166,7 @@ public class IdpItemStack extends IdpItem {
         int data = getData();
 
         ItemStack stack = new ItemStack(mat.getBukkitMaterial(), amount, (short) data);
-        net.minecraft.server.v1_11_R1.ItemStack notchStack = CraftItemStack.asNMSCopy(stack);
+        net.minecraft.server.v1_12_R1.ItemStack notchStack = CraftItemStack.asNMSCopy(stack);
         ItemData itemdata = getItemdata();
 
         if (itemdata != null && !itemdata.isEmpty()) {
@@ -186,7 +186,7 @@ public class IdpItemStack extends IdpItem {
             return new IdpItemStack(IdpMaterial.AIR, 0);
         }
 
-        net.minecraft.server.v1_11_R1.ItemStack notchstack = CraftItemStack.asNMSCopy(item);
+        net.minecraft.server.v1_12_R1.ItemStack notchstack = CraftItemStack.asNMSCopy(item);
 
         if (notchstack == null) {
             return new IdpItemStack(IdpMaterial.AIR, 0);

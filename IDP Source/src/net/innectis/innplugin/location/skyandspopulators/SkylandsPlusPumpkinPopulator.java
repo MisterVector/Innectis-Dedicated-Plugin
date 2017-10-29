@@ -1,11 +1,11 @@
 package net.innectis.innplugin.location.skyandspopulators;
 
 import java.util.Random;
-import net.minecraft.server.v1_11_R1.BlockPosition;
-import net.minecraft.server.v1_11_R1.WorldGenPumpkin;
+import net.minecraft.server.v1_12_R1.BlockPosition;
+import net.minecraft.server.v1_12_R1.WorldGenPumpkin;
 import org.bukkit.Chunk;
 import org.bukkit.World;
-import org.bukkit.craftbukkit.v1_11_R1.CraftWorld;
+import org.bukkit.craftbukkit.v1_12_R1.CraftWorld;
 import org.bukkit.generator.BlockPopulator;
 
 public class SkylandsPlusPumpkinPopulator extends BlockPopulator {
@@ -17,7 +17,7 @@ public class SkylandsPlusPumpkinPopulator extends BlockPopulator {
 	}
 
 	public void populate(World world, Random random, Chunk chunk){
-		net.minecraft.server.v1_11_R1.World mcWorld = ((CraftWorld) world).getHandle();
+		net.minecraft.server.v1_12_R1.World mcWorld = ((CraftWorld) world).getHandle();
 
 		int x, y, z;
 
