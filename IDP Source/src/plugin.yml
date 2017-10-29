@@ -1,0 +1,1291 @@
+name: Innectis Dedicated Plugin
+author: Hretsam, The_Lynxy, AlphaBlend & Nosliw
+version: 12.0.0
+main: net.innectis.innplugin.InnPlugin
+loadbefore:
+- dynmap
+commands:
+  perm:
+    description: ''
+    usage: ''
+  permlist:
+    description: ''
+    usage: ''
+  cleanup:
+    description: ''
+    usage: ''
+  createpicture:
+    description: ''
+    usage: ''
+  setgroup:
+    description: ''
+    usage: ''
+  delworld:
+    description: ''
+    usage: ''
+  addworld:
+    description: ''
+    usage: ''
+  effect:
+    description: ''
+    usage: ''
+  createlotarea:
+    description: ''
+    usage: ''
+  sudo:
+    description: ''
+    usage: ''
+  slogout:
+    description: ''
+    usage: ''
+  ssetname:
+    description: ''
+    usage: ''
+  slogin:
+    description: ''
+    usage: ''
+  sresetnames:
+    description: ''
+    usage: ''
+  utility:
+    description: ''
+    usage: ''
+  util:
+    description: ''
+    usage: ''
+  playerpasswords:
+    description: ''
+    usage: ''
+  ppw:
+    description: ''
+    usage: ''
+  setguestpromotearea:
+    description: ''
+    usage: ''
+  unloadworldchunks:
+    description: ''
+    usage: ''
+  maintenance:
+    description: ''
+    usage: ''
+  fillcontainer:
+    description: ''
+    usage: ''
+  fc:
+    description: ''
+    usage: ''
+  listinv:
+    description: ''
+    usage: ''
+  openenderchest:
+    description: ''
+    usage: ''
+  openechest:
+    description: ''
+    usage: ''
+  gc:
+    description: ''
+    usage: ''
+  lock:
+    description: ''
+    usage: ''
+  openchest:
+    description: ''
+    usage: ''
+  unlock:
+    description: ''
+    usage: ''
+  invswitch:
+    description: ''
+    usage: ''
+  switchinv:
+    description: ''
+    usage: ''
+  changeinv:
+    description: ''
+    usage: ''
+  invchange:
+    description: ''
+    usage: ''
+  swapinv:
+    description: ''
+    usage: ''
+  invswap:
+    description: ''
+    usage: ''
+  setinv:
+    description: ''
+    usage: ''
+  invset:
+    description: ''
+    usage: ''
+  setinventory:
+    description: ''
+    usage: ''
+  inventoryset:
+    description: ''
+    usage: ''
+  setfloatingtext:
+    description: ''
+    usage: ''
+  sft:
+    description: ''
+    usage: ''
+  knockback:
+    description: ''
+    usage: ''
+  knock:
+    description: ''
+    usage: ''
+  kb:
+    description: ''
+    usage: ''
+  enchant:
+    description: ''
+    usage: ''
+  equip:
+    description: ''
+    usage: ''
+  give:
+    description: ''
+    usage: ''
+  g:
+    description: ''
+    usage: ''
+  god:
+    description: ''
+    usage: ''
+  itemdata:
+    description: ''
+    usage: ''
+  spawnmob:
+    description: ''
+    usage: ''
+  strike:
+    description: ''
+    usage: ''
+  time:
+    description: ''
+    usage: ''
+  gamemode:
+    description: ''
+    usage: ''
+  gm:
+    description: ''
+    usage: ''
+  spk:
+    description: ''
+    usage: ''
+  hret:
+    description: ''
+    usage: ''
+  lynx:
+    description: ''
+    usage: ''
+  alpha:
+    description: ''
+    usage: ''
+  schret:
+    description: ''
+    usage: ''
+  scalpha:
+    description: ''
+    usage: ''
+  sclynx:
+    description: ''
+    usage: ''
+  plugins:
+    description: ''
+    usage: ''
+  pl:
+    description: ''
+    usage: ''
+  playerinfo:
+    description: ''
+    usage: ''
+  setspawn:
+    description: ''
+    usage: ''
+  tprall:
+    description: ''
+    usage: ''
+  resync:
+    description: ''
+    usage: ''
+  putlothere:
+    description: ''
+    usage: ''
+  lothere:
+    description: ''
+    usage: ''
+  plh:
+    description: ''
+    usage: ''
+  lh:
+    description: ''
+    usage: ''
+  reloadlots:
+    description: ''
+    usage: ''
+  lot:
+    description: ''
+    usage: ''
+  savelots:
+    description: ''
+    usage: ''
+  jump:
+    description: ''
+    usage: ''
+  setdata:
+    description: ''
+    usage: ''
+  kill:
+    description: ''
+    usage: ''
+  test:
+    description: ''
+    usage: ''
+  fall:
+    description: ''
+    usage: ''
+  spike:
+    description: ''
+    usage: ''
+  setimage:
+    description: ''
+    usage: ''
+  setart:
+    description: ''
+    usage: ''
+  setpicture:
+    description: ''
+    usage: ''
+  setpic:
+    description: ''
+    usage: ''
+  customEffect:
+    description: ''
+    usage: ''
+  custom:
+    description: ''
+    usage: ''
+  cast:
+    description: ''
+    usage: ''
+  whitelist:
+    description: ''
+    usage: ''
+  clearinv:
+    description: ''
+    usage: ''
+  reminv:
+    description: ''
+    usage: ''
+  modifybalance:
+    description: ''
+    usage: ''
+  modifybal:
+    description: ''
+    usage: ''
+  modbal:
+    description: ''
+    usage: ''
+  mb:
+    description: ''
+    usage: ''
+  addwarp:
+    description: ''
+    usage: ''
+  massowner:
+    description: ''
+    usage: ''
+  mo:
+    description: ''
+    usage: ''
+  delwarp:
+    description: ''
+    usage: ''
+  setowner:
+    description: ''
+    usage: ''
+  changelotheight:
+    description: ''
+    usage: ''
+  clh:
+    description: ''
+    usage: ''
+  twsetbiome:
+    description: ''
+    usage: ''
+  twbiome:
+    description: ''
+    usage: ''
+  spectate:
+    description: ''
+    usage: ''
+  spy:
+    description: ''
+    usage: ''
+  finditem:
+    description: ''
+    usage: ''
+  setinfotool:
+    description: ''
+    usage: ''
+  setinfotooltype:
+    description: ''
+    usage: ''
+  setinformationtooltype:
+    description: ''
+    usage: ''
+  platform:
+    description: ''
+    usage: ''
+  fly:
+    description: ''
+    usage: ''
+  item:
+    description: ''
+    usage: ''
+  i:
+    description: ''
+    usage: ''
+  weather:
+    description: ''
+    usage: ''
+  filter:
+    description: ''
+    usage: ''
+  chatfilter:
+    description: ''
+    usage: ''
+  game:
+    description: ''
+    usage: ''
+  timer:
+    description: ''
+    usage: ''
+  top:
+    description: ''
+    usage: ''
+  tpp:
+    description: ''
+    usage: ''
+  tphere:
+    description: ''
+    usage: ''
+  setlottag:
+    description: ''
+    usage: ''
+  checklotflag:
+    description: ''
+    usage: ''
+  clf:
+    description: ''
+    usage: ''
+  checkmemberbuild:
+    description: ''
+    usage: ''
+  cmb:
+    description: ''
+    usage: ''
+  inspectmembers:
+    description: ''
+    usage: ''
+  inspectlot:
+    description: ''
+    usage: ''
+  inspect:
+    description: ''
+    usage: ''
+  listentities:
+    description: ''
+    usage: ''
+  le:
+    description: ''
+    usage: ''
+  countentities:
+    description: ''
+    usage: ''
+  ce:
+    description: ''
+    usage: ''
+  lotlastedit:
+    description: ''
+    usage: ''
+  lle:
+    description: ''
+    usage: ''
+  addlot:
+    description: ''
+    usage: ''
+  assignlot:
+    description: ''
+    usage: ''
+  listlots:
+    description: ''
+    usage: ''
+  lotstack:
+    description: ''
+    usage: ''
+  lotcount:
+    description: ''
+    usage: ''
+  randomlot:
+    description: ''
+    usage: ''
+  remlot:
+    description: ''
+    usage: ''
+  removelot:
+    description: ''
+    usage: ''
+  resetlot:
+    description: ''
+    usage: ''
+  selectlot:
+    description: ''
+    usage: ''
+  sellot:
+    description: ''
+    usage: ''
+  borderlot:
+    description: ''
+    usage: ''
+  createctfarena:
+    description: ''
+    usage: ''
+  cca:
+    description: ''
+    usage: ''
+  sit:
+    description: ''
+    usage: ''
+  infract:
+    description: ''
+    usage: ''
+  warn:
+    description: ''
+    usage: ''
+  ban:
+    description: ''
+    usage: ''
+  unban:
+    description: ''
+    usage: ''
+  banned:
+    description: ''
+    usage: ''
+  jail:
+    description: ''
+    usage: ''
+  kick:
+    description: ''
+    usage: ''
+  modmsg:
+    description: ''
+    usage: ''
+  sc:
+    description: ''
+    usage: ''
+  mute:
+    description: ''
+    usage: ''
+  unjail:
+    description: ''
+    usage: ''
+  unmute:
+    description: ''
+    usage: ''
+  freeze:
+    description: ''
+    usage: ''
+  unfreeze:
+    description: ''
+    usage: ''
+  showinfractions:
+    description: ''
+    usage: ''
+  showinfraction:
+    description: ''
+    usage: ''
+  showinf:
+    description: ''
+    usage: ''
+  playerinfs:
+    description: ''
+    usage: ''
+  vanish:
+    description: ''
+    usage: ''
+  v:
+    description: ''
+    usage: ''
+  twtakeover:
+    description: ''
+    usage: ''
+  twto:
+    description: ''
+    usage: ''
+  twregen:
+    description: ''
+    usage: ''
+  twsendselection:
+    description: ''
+    usage: ''
+  twss:
+    description: ''
+    usage: ''
+  request:
+    description: ''
+    usage: ''
+  miningstick:
+    description: ''
+    usage: ''
+  ms:
+    description: ''
+    usage: ''
+  setprefix:
+    description: ''
+    usage: ''
+  changeprefix:
+    description: ''
+    usage: ''
+  resetprefix:
+    description: ''
+    usage: ''
+  tp:
+    description: ''
+    usage: ''
+  teleport:
+    description: ''
+    usage: ''
+  massaccess:
+    description: ''
+    usage: ''
+  ma:
+    description: ''
+    usage: ''
+  respawnlot:
+    description: ''
+    usage: ''
+  rl:
+    description: ''
+    usage: ''
+  craft:
+    description: ''
+    usage: ''
+  autoharvest:
+    description: ''
+    usage: ''
+  harvest:
+    description: ''
+    usage: ''
+  tractor:
+    description: ''
+    usage: ''
+  sethelmet:
+    description: ''
+    usage: ''
+  sethelm:
+    description: ''
+    usage: ''
+  helmet:
+    description: ''
+    usage: ''
+  helm:
+    description: ''
+    usage: ''
+  twoutline:
+    description: ''
+    usage: ''
+  twreplace:
+    description: ''
+    usage: ''
+  twresize:
+    description: ''
+    usage: ''
+  twr:
+    description: ''
+    usage: ''
+  twshift:
+    description: ''
+    usage: ''
+  twset:
+    description: ''
+    usage: ''
+  twwalls:
+    description: ''
+    usage: ''
+  twcopy:
+    description: ''
+    usage: ''
+  twpaste:
+    description: ''
+    usage: ''
+  twrotate:
+    description: ''
+    usage: ''
+  twclipboard:
+    description: ''
+    usage: ''
+  twclip:
+    description: ''
+    usage: ''
+  twc:
+    description: ''
+    usage: ''
+  deletehome:
+    description: ''
+    usage: ''
+  removehome:
+    description: ''
+    usage: ''
+  dh:
+    description: ''
+    usage: ''
+  rh:
+    description: ''
+    usage: ''
+  home:
+    description: ''
+    usage: ''
+  sethome:
+    description: ''
+    usage: ''
+  sh:
+    description: ''
+    usage: ''
+  listhomes:
+    description: ''
+    usage: ''
+  homelist:
+    description: ''
+    usage: ''
+  setbookcasetitle:
+    description: ''
+    usage: ''
+  bookcase:
+    description: ''
+    usage: ''
+  setcasename:
+    description: ''
+    usage: ''
+  casetitle:
+    description: ''
+    usage: ''
+  backpack:
+    description: ''
+    usage: ''
+  bp:
+    description: ''
+    usage: ''
+  twpos:
+    description: ''
+    usage: ''
+  twsize:
+    description: ''
+    usage: ''
+  twcount:
+    description: ''
+    usage: ''
+  join:
+    description: ''
+    usage: ''
+  j:
+    description: ''
+    usage: ''
+  leave:
+    description: ''
+    usage: ''
+  l:
+    description: ''
+    usage: ''
+  '1':
+    description: ''
+    usage: ''
+  '2':
+    description: ''
+    usage: ''
+  '3':
+    description: ''
+    usage: ''
+  '4':
+    description: ''
+    usage: ''
+  '5':
+    description: ''
+    usage: ''
+  '6':
+    description: ''
+    usage: ''
+  '7':
+    description: ''
+    usage: ''
+  '8':
+    description: ''
+    usage: ''
+  '9':
+    description: ''
+    usage: ''
+  '10':
+    description: ''
+    usage: ''
+  '11':
+    description: ''
+    usage: ''
+  '12':
+    description: ''
+    usage: ''
+  '13':
+    description: ''
+    usage: ''
+  '14':
+    description: ''
+    usage: ''
+  '15':
+    description: ''
+    usage: ''
+  '16':
+    description: ''
+    usage: ''
+  '17':
+    description: ''
+    usage: ''
+  '18':
+    description: ''
+    usage: ''
+  '19':
+    description: ''
+    usage: ''
+  '20':
+    description: ''
+    usage: ''
+  channellist:
+    description: ''
+    usage: ''
+  chanlist:
+    description: ''
+    usage: ''
+  chlist:
+    description: ''
+    usage: ''
+  emote:
+    description: ''
+    usage: ''
+  em:
+    description: ''
+    usage: ''
+  me:
+    description: ''
+    usage: ''
+  score:
+    description: ''
+    usage: ''
+  clearcaughtentities:
+    description: ''
+    usage: ''
+  cce:
+    description: ''
+    usage: ''
+  locateplayer:
+    description: ''
+    usage: ''
+  lp:
+    description: ''
+    usage: ''
+  wpadd:
+    description: ''
+    usage: ''
+  addwaypoint:
+    description: ''
+    usage: ''
+  wpset:
+    description: ''
+    usage: ''
+  waypointset:
+    description: ''
+    usage: ''
+  setwaypoint:
+    description: ''
+    usage: ''
+  tpr:
+    description: ''
+    usage: ''
+  tpback:
+    description: ''
+    usage: ''
+  tpfrom:
+    description: ''
+    usage: ''
+  setflag:
+    description: ''
+    usage: ''
+  changespawn:
+    description: ''
+    usage: ''
+  changelotspawn:
+    description: ''
+    usage: ''
+  setlotspawn:
+    description: ''
+    usage: ''
+  lotsafeadd:
+    description: ''
+    usage: ''
+  lsa:
+    description: ''
+    usage: ''
+  lotsafedel:
+    description: ''
+    usage: ''
+  lsd:
+    description: ''
+    usage: ''
+  setleavemsg:
+    description: ''
+    usage: ''
+  lmsg:
+    description: ''
+    usage: ''
+  setexitmsg:
+    description: ''
+    usage: ''
+  setentermsg:
+    description: ''
+    usage: ''
+  emsg:
+    description: ''
+    usage: ''
+  setentrymsg:
+    description: ''
+    usage: ''
+  setwelcomemsg:
+    description: ''
+    usage: ''
+  sortchest:
+    description: ''
+    usage: ''
+  sort:
+    description: ''
+    usage: ''
+  orderchest:
+    description: ''
+    usage: ''
+  order:
+    description: ''
+    usage: ''
+  bleach:
+    description: ''
+    usage: ''
+  present:
+    description: ''
+    usage: ''
+  createpresent:
+    description: ''
+    usage: ''
+  link:
+    description: ''
+    usage: ''
+  findObject:
+    description: ''
+    usage: ''
+  find:
+    description: ''
+    usage: ''
+  referral:
+    description: ''
+    usage: ''
+  refer:
+    description: ''
+    usage: ''
+  setchatname:
+    description: ''
+    usage: ''
+  heal:
+    description: ''
+    usage: ''
+  reply:
+    description: ''
+    usage: ''
+  r:
+    description: ''
+    usage: ''
+  channel:
+    description: ''
+    usage: ''
+  ch:
+    description: ''
+    usage: ''
+  msg:
+    description: ''
+    usage: ''
+  m:
+    description: ''
+    usage: ''
+  w:
+    description: ''
+    usage: ''
+  whisper:
+    description: ''
+    usage: ''
+  tell:
+    description: ''
+    usage: ''
+  commandlist:
+    description: ''
+    usage: ''
+  commands:
+    description: ''
+    usage: ''
+  cmdlist:
+    description: ''
+    usage: ''
+  cmd:
+    description: ''
+    usage: ''
+  statistics:
+    description: ''
+    usage: ''
+  stats:
+    description: ''
+    usage: ''
+  valutasink:
+    description: ''
+    usage: ''
+  vtsink:
+    description: ''
+    usage: ''
+  vsink:
+    description: ''
+    usage: ''
+  cmdinfo:
+    description: ''
+    usage: ''
+  countitem:
+    description: ''
+    usage: ''
+  help:
+    description: ''
+    usage: ''
+  id:
+    description: ''
+    usage: ''
+  version:
+    description: ''
+    usage: ''
+  ver:
+    description: ''
+    usage: ''
+  icanhasbukkit:
+    description: ''
+    usage: ''
+  idpv:
+    description: ''
+    usage: ''
+  omversion:
+    description: ''
+    usage: ''
+  ping:
+    description: ''
+    usage: ''
+  itemid:
+    description: ''
+    usage: ''
+  iteminfo:
+    description: ''
+    usage: ''
+  ii:
+    description: ''
+    usage: ''
+  who:
+    description: ''
+    usage: ''
+  list:
+    description: ''
+    usage: ''
+  world:
+    description: ''
+    usage: ''
+  serverinfo:
+    description: ''
+    usage: ''
+  compass:
+    description: ''
+    usage: ''
+  spawn:
+    description: ''
+    usage: ''
+  warp:
+    description: ''
+    usage: ''
+  allowedlots:
+    description: ''
+    usage: ''
+  al:
+    description: ''
+    usage: ''
+  setlotname:
+    description: ''
+    usage: ''
+  wholot:
+    description: ''
+    usage: ''
+  wl:
+    description: ''
+    usage: ''
+  getlot:
+    description: ''
+    usage: ''
+  gotolot:
+    description: ''
+    usage: ''
+  gtl:
+    description: ''
+    usage: ''
+  mylots:
+    description: ''
+    usage: ''
+  lotban:
+    description: ''
+    usage: ''
+  lotkick:
+    description: ''
+    usage: ''
+  lotcenter:
+    description: ''
+    usage: ''
+  lotinfo:
+    description: ''
+    usage: ''
+  lotunban:
+    description: ''
+    usage: ''
+  mylot:
+    description: ''
+    usage: ''
+  myplot:
+    description: ''
+    usage: ''
+  setlotnr:
+    description: ''
+    usage: ''
+  thislot:
+    description: ''
+    usage: ''
+  thatlot:
+    description: ''
+    usage: ''
+  editsign:
+    description: ''
+    usage: ''
+  es:
+    description: ''
+    usage: ''
+  allow:
+    description: ''
+    usage: ''
+  grant:
+    description: ''
+    usage: ''
+  clearchat:
+    description: ''
+    usage: ''
+  unsitpets:
+    description: ''
+    usage: ''
+  deny:
+    description: ''
+    usage: ''
+  unallow:
+    description: ''
+    usage: ''
+  disallow:
+    description: ''
+    usage: ''
+  revoke:
+    description: ''
+    usage: ''
+  trash:
+    description: ''
+    usage: ''
+  save:
+    description: ''
+    usage: ''
+  lights:
+    description: ''
+    usage: ''
+  mcboost:
+    description: ''
+    usage: ''
+  emptybucket:
+    description: ''
+    usage: ''
+  empty:
+    description: ''
+    usage: ''
+  eb:
+    description: ''
+    usage: ''
+  editsignwand:
+    description: ''
+    usage: ''
+  esw:
+    description: ''
+    usage: ''
+  transfercaughtentities:
+    description: ''
+    usage: ''
+  tce:
+    description: ''
+    usage: ''
+  staffrequest:
+    description: ''
+    usage: ''
+  sr:
+    description: ''
+    usage: ''
+  massremove:
+    description: ''
+    usage: ''
+  mremove:
+    description: ''
+    usage: ''
+  mr:
+    description: ''
+    usage: ''
+  die:
+    description: ''
+    usage: ''
+  setting:
+    description: ''
+    usage: ''
+  settings:
+    description: ''
+    usage: ''
+  playersetting:
+    description: ''
+    usage: ''
+  toggle:
+    description: ''
+    usage: ''
+  ignore:
+    description: ''
+    usage: ''
+  ign:
+    description: ''
+    usage: ''
+  ignored:
+    description: ''
+    usage: ''
+  kicksit:
+    description: ''
+    usage: ''
+  ks:
+    description: ''
+    usage: ''
+  pvp:
+    description: ''
+    usage: ''
+  unignore:
+    description: ''
+    usage: ''
+  unign:
+    description: ''
+    usage: ''
+  mail:
+    description: ''
+    usage: ''
+  login:
+    description: ''
+    usage: ''
+  vote:
+    description: ''
+    usage: ''
+  redeem:
+    description: ''
+    usage: ''
+  reward:
+    description: ''
+    usage: ''
+  votepoint:
+    description: ''
+    usage: ''
+  vp:
+    description: ''
+    usage: ''
+  rd:
+    description: ''
+    usage: ''
+  re:
+    description: ''
+    usage: ''
+  findrenamedplayer:
+    description: ''
+    usage: ''
+  frp:
+    description: ''
+    usage: ''
+  chatsounds:
+    description: ''
+    usage: ''
+  setshopitem:
+    description: ''
+    usage: ''
+  ssi:
+    description: ''
+    usage: ''
+  bank:
+    description: ''
+    usage: ''
+  chestshop:
+    description: ''
+    usage: ''
+  cs:
+    description: ''
+    usage: ''
+  sendmoney:
+    description: ''
+    usage: ''
+  sm:
+    description: ''
+    usage: ''
+  send:
+    description: ''
+    usage: ''
+  balance:
+    description: ''
+    usage: ''
+  getbalance:
+    description: ''
+    usage: ''
+  getbal:
+    description: ''
+    usage: ''
+  bal:
+    description: ''
+    usage: ''
+  accept:
+    description: ''
+    usage: ''
+  a:
+    description: ''
+    usage: ''
+  requestlist:
+    description: ''
+    usage: ''
+  requests:
+    description: ''
+    usage: ''
+  rq:
+    description: ''
+    usage: ''
+  reject:
+    description: ''
+    usage: ''
+  reschedulerestart:
+    description: ''
+    usage: ''
+  restarttime:
+    description: ''
+    usage: ''
