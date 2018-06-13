@@ -18,14 +18,12 @@ After you have downloaded the repository, import everything inside the IDP Sourc
 
 ## Setting up the database
 
-The IDP communicates with a database using MySQL. So, with your MySQL manager of choice create a new user with the following credentials:
+The IDP communicates with a database using MySQL. So, with your MySQL manager of choice import the IDP Database Schema.sql file into MySQL to setup the database and structure. Next, create a new user with the following credentials:
 
 Username: craft@localhost  
 Password: gR3ns9xs
 
-It is not necessary to grant any global permissions. Next, create a database called innectis_db. Then, go into permission management and assign craft@localhost all permissions to innectis_db except the create and drop permissions.
-
-Then, import the IDP Database Schema.sql file into innectis_db to setup the database structure.
+Note that it is not necessary to grant any global permissions. Once the account has been made, go into permission management and assign craft@localhost all permissions to innectis_db except the create and drop permissions.
 
 ## Running the IDP alongside Papyrus
 
