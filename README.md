@@ -12,6 +12,15 @@ The sections below will explain how to setup the IDP so that you can edit the so
 
 This guide assumes you already know how to use a Java IDE (such as NetBeans), know how to set up a MySQL server, and setup a Bukkit-compatible Minecraft server.
 
+### Database Server Support
+
+The IDP supports the following databases:
+
+* MySQL (up to 5.6)
+* MariaDB (up to 5.5)
+
+Later versions of MySQL and MariaDB may work but are not guaranteed.
+
 ## Setting up the IDP Source
 
 First download this repository at https://github.com/AlphaBlend/Innectis-Dedicated-Plugin/archive/master.zip
@@ -20,7 +29,7 @@ After you have downloaded the repository, import everything inside the IDP Sourc
 
 ## Setting up the database
 
-The IDP communicates with a database using MySQL. So, with your MySQL manager of choice import the IDP Database Schema.sql file into MySQL to setup the database and structure. Next, create a new user with the following credentials:
+With your MySQL manager of choice import the IDP Database Schema.sql file into MySQL to setup the database and structure. Next, create a new user with the following credentials:
 
 Username: craft@localhost  
 Password: gR3ns9xs
