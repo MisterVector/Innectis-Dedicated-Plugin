@@ -40,7 +40,7 @@ Note that it is not necessary to grant any global permissions. Once the account 
 
 ## Running the IDP alongside Papyrus
 
-If you don't already have a build of Papyrus for Minecraft 1.12.2, you can request a copy of it. Copy the Innectis Dedicated Plugin.jar file to your server's plugins folder, optionally the plugins in IDP Source\libs.
+If you don't already have a build of Papyrus for Minecraft 1.12.2, you can request a copy of it. Copy the Innectis Dedicated Plugin.jar file to your server's plugins folder, optionally the plugins in IDP Source\libs. Copy the server.properties file to the server directory as well.
 
 Start the server, and IDP should start up. In the console, type in "setgroup `<username>` 1" to set yourself to an admin and then type in "op `<username>`" to op yourself.
 
