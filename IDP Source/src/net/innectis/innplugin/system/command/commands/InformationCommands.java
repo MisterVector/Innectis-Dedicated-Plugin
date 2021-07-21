@@ -659,6 +659,12 @@ public final class InformationCommands {
         }
         //</editor-fold>
 
+        if (args.size() == 0) {
+            sender.printError("The player argument was not given.");
+            
+            return;
+        }
+
         String playerName = args.getString(0);
         IdpPlayer target = parent.getPlayer(playerName);
         PlayerSession session = null;
