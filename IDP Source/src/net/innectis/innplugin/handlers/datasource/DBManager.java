@@ -29,7 +29,7 @@ public class DBManager {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             /** Open connection */
-            return DriverManager.getConnection("jdbc:mysql://127.0.0.1/" + Configuration.MYSQL_DATABASE,
+            return DriverManager.getConnection("jdbc:mysql://127.0.0.1/" + Configuration.MYSQL_DATABASE + "?useSSL=false",
                     Configuration.MYSQL_USERNAME, Configuration.MYSQL_PASSWORD);
         } catch (ClassNotFoundException e) {
             InnPlugin.logError("ClassNotFoundException ", e);
