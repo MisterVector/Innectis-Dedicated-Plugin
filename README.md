@@ -6,6 +6,8 @@ The source code in this repository was built for Minecraft 1.12.2, using a modif
 
 A gitstats report has been generated for this repository here: http://archives.codespeak.org/innectis/information/gitstats_report/index.html
 
+Note that the data from this report comes from the original IDP repository which is not housed here.
+
 The sections below will explain how to setup the IDP so that you can edit the source code as well as run a copy of the IDP.
 
 ## Assumptions
@@ -14,16 +16,16 @@ This guide assumes you already know how to use a Java IDE (such as NetBeans), kn
 
 ### Database Server Support
 
-The IDP supports the following databases:
+The IDP works with the following databases:
 
-* MySQL (up to 5.6)
-* MariaDB (up to 5.5)
+* MySQL: 5.5, 5.6, 8.0
+* MariaDB: 5.5
 
-Later versions of MySQL and MariaDB may work but are not guaranteed.
+The versions of these databases are confirmed to work. Other versions may work but unless they are shown here they are not confirmed to work.
 
 ## Setting up the IDP Source
 
-First download this repository at https://github.com/AlphaBlend/Innectis-Dedicated-Plugin/archive/master.zip
+First download this repository at https://github.com/MisterVector/Innectis-Dedicated-Plugin/archive/master.zip
 
 After you have downloaded the repository, import everything inside the IDP Source\src folder into a new project in your favorite Java IDE along with all the libraries in the IDP Source\libs folder.
 
