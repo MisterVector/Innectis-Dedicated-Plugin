@@ -581,7 +581,7 @@ public final class InformationCommands {
             prefixComponent.setColor(ColorUtil.idpColorToBungee(ChatColor.YELLOW));
 
             TextComponent text = ChatUtil.createTextComponent(ChatColor.YELLOW, "Read the changelog ");
-            text.addExtra(ChatUtil.createHTMLLink("here", "http://files.innectis.net/changelog/index.htm#" + pluginVersion));
+            text.addExtra(ChatUtil.createHTMLLink("here", "https://archives.codespeak.org/innectis/information/changelog/index.htm#" + pluginVersion));
             text.addExtra(ChatUtil.createTextComponent(ChatColor.YELLOW, "!"));
 
             player.print(text);

@@ -76,7 +76,7 @@ public class MessageTask extends RepeatingTask {
             for (IdpPlayer player : InnPlugin.getPlugin().getOnlinePlayers()) {
                 if (player.getSession().hasSetting(PlayerSettings.TIPS)) {
                     TextComponent text = ChatUtil.createTextComponent(ChatColor.YELLOW, "Did you know we have a forum? Click ");
-                    text.addExtra(ChatUtil.createHTMLLink("here", "http://www.innectis.net"));
+                    text.addExtra(ChatUtil.createHTMLLink("here", "https://archives.codespeak.org/innectis/forum/"));
                     text.addExtra(ChatUtil.createTextComponent(ChatColor.YELLOW, " to check it out!"));
 
                     player.print(text);
